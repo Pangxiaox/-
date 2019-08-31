@@ -1,3 +1,4 @@
+<!-- 表单部分地方暂不清楚应该用普通输入框还是下拉选择框 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,15 +18,24 @@
         }
         table {
             margin: 0 auto;
+            border-collapse:collapse;
+            border:none;
+        }
+        td{
+            border:solid #000 1px;
         }
         .title{
             text-align:center;
+        }
+        textarea{
+            vertical-align: top;
         }
     </style>
 </head>
 <body>
     <div class="main">
-        <p class="title">第<input type="text">次住院&nbsp;&nbsp;
+        <!-- 顶部信息 -->
+        <p class="title">第 <input type="text"> 次住院&nbsp;&nbsp;
             姓名: <input type="text">&nbsp;&nbsp;
             性别: <select>
                 <option value="男">男</option>
@@ -35,6 +45,7 @@
         </p>
             <hr/>
         <form>
+            <!-- 病人个人信息 -->
             <div class="personinfo">
                 <h2>病人个人信息</h2>
                 <p>姓名: <input type="text">&nbsp;&nbsp;
@@ -55,11 +66,12 @@
                     住址: <input type="text">&nbsp;&nbsp;
                 </p>
                 <p>病史报告者: <input type="text">&nbsp;&nbsp;
-                    入院（室）日期: <input type="text">&nbsp;&nbsp;
-                    病史记录时间: <input type="text">&nbsp;&nbsp;
+                    入院（室）日期: <input type="date">&nbsp;&nbsp;
+                    病史记录时间: <input type="datetime-local">&nbsp;&nbsp;
                 </p>
             </div>
             <hr/>
+            <!-- 病人基本信息 -->
             <div class="basicinfo">
                 <h2>病人基本信息</h2>
                 <p>主诉: <textarea cols="70" rows="5"></textarea></p>
@@ -160,6 +172,7 @@
                 </p>
             </div>
             <hr/>
+            <!-- 病人体格检查信息 -->
             <div class="bodycheck">
                 <h2>体格检查</h2>
                 <p>生命体征:
@@ -191,6 +204,7 @@
                 </p>
             </div>
             <hr/>
+            <!-- 病人胸部检查信息 -->
             <div class="chestcheck">
                 <h2>胸部检查</h2>
                 <p>视诊:
@@ -221,6 +235,7 @@
                 </p>
             </div>
             <hr/>
+            <!-- 病人腹部检查信息 -->
             <div class="stomachcheck">
                 <h2>腹部检查</h2>
                 <p>触诊:
@@ -247,6 +262,7 @@
                 </p>
             </div>
             <hr/>
+            <!-- 病人专科检查（眼部检查）信息 -->
             <div class="eyecheck">
                 <h2>眼部检查</h2>
                 <table border="1" cellpadding="15">
@@ -262,8 +278,8 @@
                     </tr>
                     <tr>
                         <td>眼压</td>
-                        <td><input type="text">Hg</td>
-                        <td><input type="text">Hg</td>
+                        <td><input type="text"> Hg</td>
+                        <td><input type="text"> Hg</td>
                     </tr>
                     <tr>
                         <td>眼睑</td>
@@ -505,14 +521,16 @@
                 <br/>
             </div>
             <hr/>
+            <!-- 病人辅助检查信息,病历例子显示暂缺 -->
             <div class="extracheck">
                 <h2>辅助检查</h2>
             </div>
             <hr/>
+            <!-- 病人诊断报告 -->
             <div class="diagnose">
                 <h2>诊断报告</h2>
                 <p>诊断结果:
-                    <input type="text">
+                    <textarea cols="90" rows="2"></textarea>
                 </p>
                 <p>医师:
                     <input type="text">
@@ -522,7 +540,7 @@
                 </p>
                 <p>
                     日期:
-                    <input type="text">
+                    <input type="datetime-local">
                 </p>
             </div>
         </form>
