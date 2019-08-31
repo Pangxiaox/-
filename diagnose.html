@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>病历信息</title>
+    <style type="text/css">
+        .main{
+            width:90%;
+            margin:0 auto;
+        }
+        .basicinfo,.personinfo,.bodycheck,.chestcheck,.stomachcheck,.eyecheck,.extracheck,.diagnose{
+            border-radius:8px;
+            border:1px solid black;
+        }
+        h2{
+            text-align:center;
+        }
+        table {
+            margin: 0 auto;
+        }
+        .title{
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <p class="title">第<input type="text">次住院&nbsp;&nbsp;
+            姓名: <input type="text">&nbsp;&nbsp;
+            性别: <select>
+                <option value="男">男</option>
+                <option value="女">女</option>
+            </select>&nbsp;&nbsp;
+            住院号: <input type="text">
+        </p>
+            <hr/>
+        <form>
+            <div class="personinfo">
+                <h2>病人个人信息</h2>
+                <p>姓名: <input type="text">&nbsp;&nbsp;
+                    年龄: <input type="text">&nbsp;&nbsp;
+                性别:<select>
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>&nbsp;&nbsp;
+                    民族: <input type="text">
+                </p>
+                <p>职业: <input type="text">&nbsp;&nbsp;
+                    婚姻: <select>
+                        <option value="已婚">已婚</option>
+                        <option value="未婚">未婚</option>
+                    </select>
+                </p>
+                <p>出生地: <input type="text">&nbsp;&nbsp;
+                    住址: <input type="text">&nbsp;&nbsp;
+                </p>
+                <p>病史报告者: <input type="text">&nbsp;&nbsp;
+                    入院（室）日期: <input type="text">&nbsp;&nbsp;
+                    病史记录时间: <input type="text">&nbsp;&nbsp;
+                </p>
+            </div>
+            <hr/>
+            <div class="basicinfo">
+                <h2>病人基本信息</h2>
+                <p>主诉: <textarea cols="70" rows="5"></textarea></p>
+                <p>现病史: <textarea cols="70" rows="5"></textarea></p>
+                <p>既往史:
+                    是否有结核病史: <select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>&nbsp;&nbsp;
+                    是否有肝炎史: <select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>&nbsp;&nbsp;
+                    是否有其他传染病史: <select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>&nbsp;&nbsp;
+                    是否有慢性病病史: <select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>&nbsp;&nbsp;
+                    是否有高血压史: <select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>
+                    <br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    是否有糖尿病史: <select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>&nbsp;&nbsp;
+                    是否有心脏病史: <select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>&nbsp;&nbsp;
+                    按时接种疫苗是否有过敏史: <select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>&nbsp;&nbsp;
+                    是否有手术史: <select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>&nbsp;&nbsp;
+                    <br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    备注: <textarea cols="60" rows="3"></textarea>
+                </p>
+                <p>个人史:
+                    出生地 <input type="text">&nbsp;&nbsp;
+                    是否有吸烟嗜好: <select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>&nbsp;&nbsp;
+                    是否有饮酒嗜好: <select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>&nbsp;&nbsp;
+                    是否有疫水接触史:<select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>&nbsp;&nbsp;
+                    <br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    备注: <textarea cols="60" rows="3"></textarea>
+                </p>
+                <p>婚育史:
+                    是否已婚: <select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>&nbsp;&nbsp;
+                    备注: <input type="text">
+                </p>
+                <p>月经史:
+                    是否已绝经: <select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>&nbsp;&nbsp;
+                    备注: <input type="text">
+                </p>
+                <p>家族史:
+                    是否有糖尿病家族史: <select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>&nbsp;&nbsp;
+                    是否有冠心病家族史:  <select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>&nbsp;&nbsp;
+                    是否有中风家族史:  <select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>&nbsp;&nbsp;
+                    是否有肿瘤家族史:  <select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>&nbsp;&nbsp;
+                    是否有高血压家族史:  <select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>&nbsp;&nbsp;
+                </p>
+            </div>
+            <hr/>
+            <div class="bodycheck">
+                <h2>体格检查</h2>
+                <p>生命体征:
+                    T: <input type="text"> ℃ &nbsp;&nbsp;
+                    P: <input type="text"> 次/分 &nbsp;&nbsp;
+                    R: <input type="text"> 次/分 &nbsp;&nbsp;
+                    Bp: <input type="text"> mmHg
+                </p>
+                <p>一般项目:
+                    <textarea cols="70" rows="4"></textarea>
+                </p>
+                <p>皮肤粘膜:
+                    色泽是否有黄染: <select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>
+                </p>
+                <p>浅表淋巴结:
+                    浅表淋巴结是否有肿大: <select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>
+                </p>
+                <p>颈部:
+                    <input type="text">
+                </p>
+                <p>五官:
+                    <input type="text">
+                </p>
+            </div>
+            <hr/>
+            <div class="chestcheck">
+                <h2>胸部检查</h2>
+                <p>视诊:
+                    胸廓外形是否有畸形:
+                        <select>
+                            <option value="有">有</option>
+                            <option value="无">无</option>
+                        </select>
+                </p>
+                <p>听诊:
+                    双侧肺呼吸音是否正常:     <select>
+                        <option value="正常">正常</option>
+                        <option value="不正常">不正常</option>
+                    </select>&nbsp;&nbsp;
+                    是否闻及干啰音:   <select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>&nbsp;&nbsp;
+                    是否闻及湿啰音: <select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>&nbsp;&nbsp;
+                    心率: <input type="text"> 次/分 &nbsp;&nbsp;
+                    心律是否齐: <select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>
+                </p>
+            </div>
+            <hr/>
+            <div class="stomachcheck">
+                <h2>腹部检查</h2>
+                <p>触诊:
+                    全腹是否软:<select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>&nbsp;&nbsp;
+                    全腹是否有压痛:<select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>&nbsp;&nbsp;
+                    全腹是否有反跳痛:<select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>&nbsp;&nbsp;
+                    肝脏肋下是否有触及:<select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>&nbsp;&nbsp;
+                    脾脏肋下是否有触及:<select>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>
+                </p>
+            </div>
+            <hr/>
+            <div class="eyecheck">
+                <h2>眼部检查</h2>
+                <table border="1" cellpadding="15">
+                    <tr>
+                        <td></td>
+                        <td>右</td>
+                        <td>左</td>
+                    </tr>
+                    <tr>
+                        <td>视力</td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>眼压</td>
+                        <td><input type="text">Hg</td>
+                        <td><input type="text">Hg</td>
+                    </tr>
+                    <tr>
+                        <td>眼睑</td>
+                        <td>是否有水肿:
+                        <select>
+                            <option value="是">是</option>
+                            <option value="否">否</option>
+                        </select>&nbsp;&nbsp;
+                            有无睑内外翻:
+                            <select>
+                                <option value="有">有</option>
+                                <option value="无">无</option>
+                            </select>
+                        </td>
+                        <td>是否有水肿:
+                            <select>
+                                <option value="是">是</option>
+                                <option value="否">否</option>
+                            </select>&nbsp;&nbsp;
+                            有无睑内外翻:
+                            <select>
+                                <option value="有">有</option>
+                                <option value="无">无</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>其他（眼位、眼球运动、眼球突出度、固视等）</td>
+                        <td>
+                            眼球运动是否正常:
+                            <select>
+                                <option value="是">是</option>
+                                <option value="否">否</option>
+                            </select>&nbsp;&nbsp;
+                            眼球是否有凸出:
+                            <select>
+                                <option value="是">是</option>
+                                <option value="否">否</option>
+                            </select>
+                        </td>
+                        <td>
+                            眼球运动是否正常:
+                            <select>
+                                <option value="是">是</option>
+                                <option value="否">否</option>
+                            </select>&nbsp;&nbsp;
+                            眼球是否有凸出:
+                            <select>
+                                <option value="是">是</option>
+                                <option value="否">否</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>泪器</td>
+                        <td>
+                            泪囊皮肤是否有红肿:
+                        <select>
+                            <option value="是">是</option>
+                            <option value="否">否</option>
+                        </select>
+                        <br/><br/>
+                        压迫泪囊是否有分泌物:
+                        <select>
+                            <option value="是">是</option>
+                            <option value="否">否</option>
+                        </select>
+                        <br/><br/>
+                        泪道冲洗是否通畅:
+                        <select>
+                            <option value="是">是</option>
+                            <option value="否">否</option>
+                        </select>
+                    </td>
+                        <td>
+                            泪囊皮肤是否有红肿:
+                            <select>
+                                <option value="是">是</option>
+                                <option value="否">否</option>
+                            </select>
+                            <br/><br/>
+                            压迫泪囊是否有分泌物:
+                            <select>
+                                <option value="是">是</option>
+                                <option value="否">否</option>
+                            </select>
+                            <br/><br/>
+                            泪道冲洗是否通畅:
+                            <select>
+                                <option value="是">是</option>
+                                <option value="否">否</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>结膜</td>
+                        <td>是否有充血:
+                        <select>
+                            <option value="是">是</option>
+                            <option value="否">否</option>
+                        </select>
+                        </td>
+                        <td>是否有充血:
+                            <select>
+                                <option value="是">是</option>
+                                <option value="否">否</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>巩膜</td>
+                        <td>是否有黄染:
+                        <select>
+                            <option value="是">是</option>
+                            <option value="否">否</option>
+                        </select>
+                        </td>
+                        <td>是否有黄染:
+                            <select>
+                                <option value="是">是</option>
+                                <option value="否">否</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>角膜</td>
+                        <td>
+                            <img src="#" alt="图片1">
+                            <img src="#" alt="图片2">
+                            <hr/>
+                            是否透明:
+                            <select>
+                                <option value="是">是</option>
+                                <option value="否">否</option>
+                            </select>
+                        </td>
+                        <td>
+                            <img src="#" alt="图片1">
+                            <img src="#" alt="图片2">
+                            <hr/>
+                            是否透明:
+                            <select>
+                                <option value="是">是</option>
+                                <option value="否">否</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>前房</td>
+                        <td>
+                            中央前房深度<input type="text"> CT
+                            <br/><br/>
+                            周围前房深度<input type="text"> CT
+                            <br/><br/>
+                            房水是否清:
+                            <select>
+                                <option value="是">是</option>
+                                <option value="否">否</option>
+                            </select>
+                        </td>
+                        <td>
+                            中央前房深度<input type="text"> CT
+                            <br/><br/>
+                            周围前房深度<input type="text"> CT
+                            <br/><br/>
+                            房水是否清:
+                            <select>
+                                <option value="是">是</option>
+                                <option value="否">否</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>虹膜</td>
+                        <td>纹理是否清晰:
+                        <select>
+                            <option value="是">是</option>
+                            <option value="否">否</option>
+                        </select>
+                        </td>
+                        <td>纹理是否清晰:
+                            <select>
+                                <option value="是">是</option>
+                                <option value="否">否</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>瞳孔</td>
+                        <td>直径<input type="text"> mm
+                        是否存在光反射:
+                            <select>
+                                <option value="是">是</option>
+                                <option value="否">否</option>
+                            </select>
+                        </td>
+                        <td>直径<input type="text"> mm
+                            是否存在光反射:
+                            <select>
+                                <option value="是">是</option>
+                                <option value="否">否</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>晶状体</td>
+                        <td>
+                            <img src="#" alt="图片1">
+                            <img src="#" alt="图片2">
+                            <hr/>
+                            <input type="text">
+                        </td>
+                        <td>
+                            <img src="#" alt="图片1">
+                            <img src="#" alt="图片2">
+                            <hr/>
+                            <input type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>玻璃体</td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>眼底</td>
+                        <td>
+                            <img src="#" alt="图片1">
+                            <hr/>
+                            <textarea cols="40" rows="2"></textarea>
+                        </td>
+                        <td>
+                            <img src="#" alt="图片1">
+                            <hr/>
+                            <textarea cols="40" rows="2"></textarea>
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+            </div>
+            <hr/>
+            <div class="extracheck">
+                <h2>辅助检查</h2>
+            </div>
+            <hr/>
+            <div class="diagnose">
+                <h2>诊断报告</h2>
+                <p>诊断结果:
+                    <input type="text">
+                </p>
+                <p>医师:
+                    <input type="text">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                主任或主治医师:
+                    <input type="text">
+                </p>
+                <p>
+                    日期:
+                    <input type="text">
+                </p>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
