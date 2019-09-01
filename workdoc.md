@@ -36,7 +36,7 @@
 
 #### 数据库CRUD
 
-#### （引用自https://blog.csdn.net/ZCF1002797280/article/details/49559863）
+#### （引用自https://blog.csdn.net/ZCF1002797280/article/details/49559863 ）
 
 ```python
   class Student():
