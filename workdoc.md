@@ -36,7 +36,7 @@
 
 #### 数据库CRUD
 
-#### （引用自https://blog.csdn.net/ZCF1002797280/article/details/49559863 ）
+#### （引用自https://blog.csdn.net/ZCF1002797280/article/details/49559863）
 
 ```python
   class Student():
@@ -131,5 +131,177 @@ Student.objects.create(name="Aaron", age=23)
 
 ```python
 	Student.objects.filter(name__contains="A")
+```
+
+
+
+### 9.2 Django 模板系统
+
+##### 常用操作
+
+{{ }}表示变量，在模板渲染的时候替换成值，{% %}(表示标签)表示逻辑相关的操作
+
+hello/views.py
+
+```python
+from django.shortcuts import render
+from django.http import HttpResponse
+
+def template_test(request):
+
+    class Person():
+        def __init__(self, name, age):
+            self.name = name
+            self.age = age
+
+        def sleep(self):
+            return "{}正在睡觉.".format(self.name)
+
+    p1 = Person("Ann", 21)
+    p2 = Person("Bob", 23)
+    p_list = [p1, p2]
+    lst = [11, 22, 33, "aa", "gg"]
+    dst = {"hobby": "running", "age": 27}
+    return render(request, "../templates/template_test.html", {"p_list": p_list, "lst": lst, "dst": dst})
+```
+
+hello/templates/template_test.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p>
+        取参数:{{ p_list.0.name }}
+        <br/>
+        取参数:{{ p_list.1.age }}
+        <br/>
+        取参数:{{ lst.2 }}
+        <br/>
+        取参数:{{ lst.4 }}
+        <br/>
+        取参数:{{ dst.hobby }}
+        <br/>
+        取参数:{{ p_list.0.sleep }}
+    </p>
+
+<ul>
+    {% for person in p_list %}
+        <li>{{ person.name }}</li>
+        <li>{{ person.age }}</li>
+    {% endfor %}
+</ul>
+<ul>
+    {% for item in lst %}
+        <li>{{ item }}</li>
+    {% endfor %}
+</ul>
+{% if p_list %}
+    人数:{{ p_list|length }}
+    {% else %}
+    没有人员
+{% endif %}
+</body>
+</html>
+```
+
+urls.py
+
+```python
+from hello import views
+urlpatterns = [
+    url(r'^hello/', views.hello),
+    url(r'^template_test/', views.template_test)
+]
+```
+
+##### 过滤器
+
+{{ value|filter_name:参数 }}
+
+▲ ‘:’ 左右没有空格
+
+- length
+
+  {{ value|length }}返回value的长度
+
+- upper/title/lower
+
+  {{value|upper}}返回大写 {{value|lower}}返回小写 {{value|title}}让每个开头字母都大写
+
+- first/last
+
+  {{value|first}}取第一个元素 {{value|last}}取最后一个元素
+
+- slice
+
+  {{value|slice:"2:-1"}} python切片
+
+##### 模板继承
+
+主要是为了提高代码重用，减轻开发人员的工作量。
+
+典型应用：网站的头部、尾部信息
+
+⭕父模板：标签block用于在父模板中预留区域，留给子模板填充差异性的内容。建议给endblock标签写上名字，这个名字与对应的block名字相同。
+
+⭕子模版：标签extends表示继承，写在子模版文件第一行。子模版不用填充父模版中的所有预留区域，如果子模版没有填充，则使用父模版定义的默认值。
+
+templates/base.html（父模板）
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <h1>My helpful timestamp site</h1>
+    {% block content %}{% endblock %}
+    {% block footer %}
+    <hr>
+    <p>Thanks for visiting my site.</p>
+    {% endblock %}
+</body>
+</html>
+```
+
+templates/current_datetime.html（子模板）
+
+```html
+{% extends "base.html" %}
+{% block title %}The current time{% endblock %}
+{% block content %}
+<p>It is now {{ current_date }}.</p>
+{% endblock %}
+```
+
+hello/views.py
+
+```python
+# omit something
+def base(request):
+    return render(request, "../templates/base.html", {"title" : "parent"})
+
+
+def current_datetime(request):
+    current_date=datetime.datetime.now()
+    return render(request, "../templates/current_datetime.html", {"current_date": current_date})
+```
+
+urls.py
+
+```python
+from hello import views
+
+urlpatterns = [
+    # omit something
+    url(r'^base/', views.base),
+    url(r'^current_datetime/', views.current_datetime)
+]
 ```
 
