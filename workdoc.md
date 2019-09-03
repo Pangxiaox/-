@@ -305,3 +305,29 @@ urlpatterns = [
 ]
 ```
 
+### 9.3 
+
+今天有点忙，没干太多，然后在GitHub上找了一些例子准备看，先mark在这里：
+
+https://github.com/snowWave1995/Student_management
+
+https://github.com/jerrybox/StudentSystemAdmin
+
+今天试了一下用MySQL作为数据库而不是默认的SQLite，需要先在命令行中使用 `pip install mysqlclient`来安装MySQL驱动。
+
+settings.py
+
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',  # 或者使用 mysql.connector.django
+        'NAME': 'test',
+        'USER': 'test',
+        'PASSWORD': 'test123',
+        'HOST':'localhost',
+        'PORT':'3306',
+    }
+}
+```
+
+通过这几天的学习，自己简单的写了一下比较基础的入门级的代码，不在命令行中操作数据库，而是直接定义一个函数来操作数据库，并使用了模板和视图，在网页上显示出数据库中的相关数据值。
