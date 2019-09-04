@@ -331,3 +331,97 @@ DATABASES = {
 ```
 
 通过这几天的学习，自己简单的写了一下比较基础的入门级的代码，不在命令行中操作数据库，而是直接定义一个函数来操作数据库，并使用了模板和视图，在网页上显示出数据库中的相关数据值。
+
+### 9.4 Django表单
+
+今天还是很忙，甚至比昨天还忙，哭唧唧，明天就有时间喇，可以去看之前说的GitHub项目例子了。今天帮小金同学解决了pycharm连接MySQL的问题，大家都要好好加油，做实干家！
+
+代码参考自： https://www.runoob.com/django/django-form.html
+
+##### HTTP请求之GET方法
+
+hello/search.py
+
+```python
+# -*- coding: utf-8 -*-
+
+from django.http import HttpResponse
+from django.shortcuts import render_to_response
+
+
+# 表单
+def search_form(request):
+    return render_to_response('search_form.html')
+
+
+# 接收请求数据，testinput对应HTML的输入框的name属性值
+def search(request):
+    request.encoding = 'utf-8'
+    if 'testinput' in request.GET and request.GET['testinput']:
+        message = '你搜索的内容为: ' + request.GET['testinput']
+    else:
+        message = '你提交了空表单'
+    return HttpResponse(message)
+```
+
+templates/search_form.html
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>菜鸟教程(runoob.com)</title>
+</head>
+<body>
+    <form action="/search" method="get">
+        <input type="text" name="testinput">
+        <input type="submit" value="搜索">
+    </form>
+</body>
+</html>
+```
+
+##### HTTP请求之POST方法
+
+▲表格后面还有一个{% csrf_token %}的标签。csrf 全称是 Cross Site Request Forgery。这是Django提供的防止伪装提交请求的功能。POST 方法提交的表格，必须有此标签。
+
+hello/search2.py
+
+```python
+# -*- coding: utf-8 -*-
+
+from django.shortcuts import render
+from django.views.decorators import csrf
+
+
+# 接收POST请求数据，q对应HTML的输入框的name属性值
+def search_post(request):
+    ct = {}
+    if request.POST:
+        ct['rlttee'] = request.POST['q']
+    return render(request, "post.html", ct)
+```
+
+templates/post.html
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>菜鸟教程(runoob.com)</title>
+</head>
+<body>
+    <form action="/search_post" method="post">
+        <!-- csrf_token必须 -->
+        {% csrf_token %}
+        <input type="text" name="q">
+        <input type="submit" value="Submit">
+    </form>
+
+    <p>{{ rlttee }}</p>
+</body>
+</html>
+```
+
