@@ -425,3 +425,166 @@ templates/post.html
 </html>
 ```
 
+### 9.5 新的尝试
+
+今天，准确来说是昨天，自己写了一下，实现了填写表单POST之后页面跳转到指定页面显示出更新过的数据库内容的相关操作，代码直接上我的GitHub看叭。by the way -》GitHub断更了一天就好像签到断签一样难受（不是）
+
+Student/models.py
+
+```python
+from django.db import models
+
+
+class StudentInfo(models.Model):
+    name = models.CharField(max_length=15)
+    SEX_CHOICES =(
+        ('男', 'male'),
+        ('女', 'female'),
+    )
+    sex = models.CharField(max_length=2, choices=SEX_CHOICES)
+    credit = models.IntegerField()
+```
+
+Student/views.py
+
+```python
+from Student.models import StudentInfo
+from django.shortcuts import render, redirect
+
+
+def show(request):
+    studentlist = StudentInfo.objects.all()
+    return render(request, "studentinfo.html", {"s_list": studentlist})
+
+
+def post(request):
+    stu = StudentInfo()
+    ct = {}
+    if request.POST:
+        ct['name'] = request.POST['inputname']
+        ct['sex'] = request.POST['inputsex']
+        ct['credit'] = request.POST['inputcredit']
+        stu.name = request.POST.get('inputname')
+        stu.sex = request.POST.get('inputsex')
+        stu.credit = request.POST.get('inputcredit')
+        stu.save()
+        return redirect("/studentinfo/")
+    return render(request, "post.html", ct)
+```
+
+templates/post.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/postsomething" method="post">
+    {% csrf_token %}
+    <p>姓名</p>
+    <input type="text" name="inputname">
+    <p>性别</p>
+    <select name="inputsex">
+    <option value="男" name="男">男</option>
+    <option value="女" name="女">女</option>
+    </select>
+    <p>学分</p>
+    <input type="text" name="inputcredit">
+
+    <input type="submit" value="Submit">
+</form>
+
+<p>{{ name }}</p>
+&nbsp;&nbsp;
+<p>{{ sex }}</p>
+&nbsp;&nbsp;
+<p>{{ credit }}</p>
+
+</body>
+</html>
+```
+
+templates/studentinfo.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <td>名字</td>
+        <td>性别</td>
+        <td>学分</td>
+    </tr>
+    {% for listitems in s_list %}
+        <tr>
+          <td>{{ listitems.name }}</td>
+          <td>{{ listitems.sex }}</td>
+          <td>{{ listitems.credit }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<hr/>
+<p>学分合格的同学是：</p>
+{% for listitems in s_list %}
+        {%  if listitems.credit >= 125 %}
+            {{ listitems.name }}
+        {% endif %}
+{% endfor %}
+</body>
+</html>
+```
+
+urls.py
+
+```python
+from django.contrib import admin
+from django.conf.urls import url
+from Student import views
+
+urlpatterns = [
+    url('admin/', admin.site.urls),
+    url(r'^studentinfo/', views.show),
+    url(r'^postsomething$', views.post),
+]
+```
+
+settings.py
+
+```python
+# 记得记得要加'Student'
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'Student'
+]
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',  # 或者使用 mysql.connector.django
+        'NAME': 'django',
+        'USER': 'root',
+        'PASSWORD': 'xxx',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
+```
+
+部分截图如下：
+
+<img src="C:\Users\51748\Desktop\1.PNG" alt="1" style="zoom:80%;" />
+
+![2](C:\Users\51748\Desktop\2.PNG)
