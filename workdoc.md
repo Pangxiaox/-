@@ -585,5 +585,5 @@ DATABASES = {
 
 部分截图如下：
 
-![Image text](C:\Users\51748\Desktop\1.PNG)
-![Image text](C:\Users\51748\Desktop\2.PNG)
+![Image text](https://github.com/Pangxiaox/Cataract-Platform/blob/master/Shot/1.PNG)
+![Image text](https://github.com/Pangxiaox/Cataract-Platform/blob/master/Shot/2.PNG)
