@@ -585,6 +585,5 @@ DATABASES = {
 
 部分截图如下：
 
-<img src="C:\Users\51748\Desktop\1.PNG" alt="1" style="zoom:80%;" />
-
-![2](C:\Users\51748\Desktop\2.PNG)
+![Image text](C:\Users\51748\Desktop\1.PNG)
+![Image text](C:\Users\51748\Desktop\2.PNG)
