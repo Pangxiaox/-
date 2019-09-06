@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加学生信息</title>
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<form action="/postsomething" method="post">
+    {% csrf_token %}
+    <p>姓名</p>
+    <input class="form-control" type="text" name="inputname">
+    <p>性别</p>
+    <select name="inputsex">
+    <option value="男" name="男">男</option>
+    <option value="女" name="女">女</option>
+    </select>
+    <p>学分</p>
+    <input class="form-control" type="text" name="inputcredit">
+
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>

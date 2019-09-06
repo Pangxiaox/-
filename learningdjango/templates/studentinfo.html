@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学生学分信息</title>
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+        td{
+            font-size:20px;
+            font-family: Tahoma;
+            text-align:center
+        }
+        p{
+            font-size:24px;
+            font-family: Arial;
+            text-align:center
+        }
+        .main{
+            width:90%;
+            margin:0 auto
+        }
+        h1,h2{text-align: center}
+    </style>
+</head>
+
+<body>
+<div class="main">
+<h1>学生学分信息</h1>
+<br/>
+<table class="table table-striped">
+<thead>
+    <tr>
+        <td>名字</td>
+        <td>性别</td>
+        <td>学分</td>
+    </tr>
+</thead>
+<tbody>
+<form action="/detailinfo" method="get">
+    {% for listitems in s_list %}
+        <tr>
+          <td><a href="/detailinfo">{{ listitems.name }}</td>
+          <td>{{ listitems.sex }}</td>
+          <td>{{ listitems.credit }}</td>
+        </tr>
+    {% endfor %}
+</form>
+</tbody>
+</table>
+
+<br/>
+<h2>学分合格的同学是：</h2>
+
+<p>
+{% for listitems in s_list %}
+        {%  if listitems.credit >= 125 %}
+           {{ listitems.name }}
+        {% endif %}
+{% endfor %}
+</p>
+
+<a href="/postsomething">增加学生</a>
+</div>
+</body>
+</html>
