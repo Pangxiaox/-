@@ -587,3 +587,72 @@ DATABASES = {
 
 ![Image text](https://github.com/Pangxiaox/Cataract-Platform/blob/master/Shot/1.PNG)
 ![Image text](https://github.com/Pangxiaox/Cataract-Platform/blob/master/Shot/2.PNG)
+
+### 9.6 
+
+今天在昨天代码基础上，融进了CSS和实现了点击“增加学生”填写完信息之后页面自动跳转回主界面，而且可以和数据库同步。具体代码见GitHub learningdjango文件夹。
+
+新的截图如下：
+
+![Image text](https://github.com/Pangxiaox/Cataract-Platform/blob/master/Shot/3.PNG)
+
+##### （1）Django与MySQL Workbench
+
+如果是使用MySQL作为数据库，最近总结了一份套路：
+
+1.在【Pycharm】的models.py中建表
+
+2.在【MySQL  Workbench】中建立一个数据库，然后在【Pycharm】中settings.py中的DATABASES部分修改为上面说的MySQL形式的，name为刚刚建立的数据库名，对应settings.py中INSTALLED_APPS里也要加入自己建立的app名字（python manage.py startapp myapp)
+
+▲记得首先  `pip install mysqlclient` 安装驱动
+
+3.在【Pycharm】里进行数据库迁移（python manage.py makemigrations -> python manage.py migrate)
+
+4.既可以在【Pycharm】中操作数据库，也可以在【MySQL Workbench】中通过SQL语句操作数据库，然后在【Pycharm】视图层返回数据
+
+##### （2）Django Admin管理
+
+Django 自动管理工具是 django.contrib 的一部分，可以在项目的 settings.py 中的 INSTALLED_APPS 看到。
+
+1.激活管理工具
+
+urls.py  (Pycharm专业版建立Django项目之后自动生成)
+
+```python
+# urls.py
+from django.conf.urls import url
+from django.contrib import admin
+ 
+urlpatterns = [
+    url(r'^admin/', admin.site.urls),
+]
+```
+
+2.使用管理工具
+
+通过命令 **python manage.py createsuperuser** 来创建超级用户
+
+```python
+# python manage.py createsuperuser
+Username (leave blank to use 'root'): admin
+Email address: admin@runoob.com
+Password:
+Password (again):
+Superuser created successfully.
+[root@solar HelloWorld]#
+```
+
+访问 http://127.0.0.1:8000/admin/ ，通过用户名密码登录
+
+为了让 admin 界面管理某个数据模型，我们需要先注册该数据模型到 admin
+
+myapp/admin.py
+
+```python
+from django.contrib import admin
+from TestModel.models import Test
+ 
+# Register your models here.
+admin.site.register(Test)
+```
+
