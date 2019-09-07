@@ -656,3 +656,15 @@ from TestModel.models import Test
 admin.site.register(Test)
 ```
 
+### 9.7 又是一个ctrl-CV的一天
+
+今天把之前做的病历页面成功地套用了一个模板，主要就是利用模板来调整版面样式。准备明天开会喇，这次不会鸽掉喇哈哈哈。
+
+代码已经放在GitHub上了，主要是assets文件夹和diagnose_new.html
+
+部分截图如下：
+
+![Image text](https://github.com/Pangxiaox/Cataract-Platform/blob/master/Shot/4.PNG)
+
+![Image text](https://github.com/Pangxiaox/Cataract-Platform/blob/master/Shot/5.PNG)
+
