@@ -668,3 +668,14 @@ admin.site.register(Test)
 
 ![Image text](https://github.com/Pangxiaox/Cataract-Platform/blob/master/Shot/5.PNG)
 
+### 9.8 新的安排
+
+今天开会了，这周主要安排就是数据库设计，今天先用excel做了我负责部分的属性名以及对应数据类型的设计，还没对数据库进行讨论优化，然后优化完毕之后应该就是打算在Pycharm的相应子应用下的models.py中建表了，然后进行数据库迁移，并尝试用加了模板的HTML代码实现POST和GET等相关请求。
+
+⭐关于本项目的部分约定——
+
+项目命名：CataractProject
+
+子应用命名：InformTable
+
+HTML：DetailInform.html
