@@ -679,3 +679,31 @@ admin.site.register(Test)
 子应用命名：InformTable
 
 HTML：DetailInform.html
+
+### 9.9 静态文件配置
+
+项目中的CSS、图片、js都是静态文件。一般会将静态文件放到一个单独的目录中，以方便管理。由于有些静态文件在项目中是通用的，所以推荐放在项目的根目录下。
+
+为了提供静态文件，需要配置两个参数：
+
+- STATICFILES_DIRS 存放查找静态文件的目录
+- STATIC_URL 访问静态文件的URL前缀
+
+使用步骤：
+
+1.确保INSTALLED_APPS包含了 `django.contrib.staticfiles`
+
+2.在项目根目录下创建static_files目录来保存静态文件。
+
+3.在settings.py中修改静态文件的两个参数为：
+
+```python
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static_files'),
+]
+```
+
+4.此时在static_files添加的任何静态文件都可以使用网址 /static/文件在static_files中的路径来访问了
+
+### 9.10 Django路由
