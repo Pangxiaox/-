@@ -305,6 +305,8 @@ urlpatterns = [
 ]
 ```
 
+
+
 ### 9.3 
 
 今天有点忙，没干太多，然后在GitHub上找了一些例子准备看，先mark在这里：
@@ -331,6 +333,8 @@ DATABASES = {
 ```
 
 通过这几天的学习，自己简单的写了一下比较基础的入门级的代码，不在命令行中操作数据库，而是直接定义一个函数来操作数据库，并使用了模板和视图，在网页上显示出数据库中的相关数据值。
+
+
 
 ### 9.4 Django表单
 
@@ -424,6 +428,8 @@ templates/post.html
 </body>
 </html>
 ```
+
+
 
 ### 9.5 新的尝试
 
@@ -588,6 +594,8 @@ DATABASES = {
 ![Image text](https://github.com/Pangxiaox/Cataract-Platform/blob/master/Shot/1.PNG)
 ![Image text](https://github.com/Pangxiaox/Cataract-Platform/blob/master/Shot/2.PNG)
 
+
+
 ### 9.6 
 
 今天在昨天代码基础上，融进了CSS和实现了点击“增加学生”填写完信息之后页面自动跳转回主界面，而且可以和数据库同步。具体代码见GitHub learningdjango文件夹。
@@ -656,6 +664,8 @@ from TestModel.models import Test
 admin.site.register(Test)
 ```
 
+
+
 ### 9.7 又是一个ctrl-CV的一天
 
 今天把之前做的病历页面成功地套用了一个模板，主要就是利用模板来调整版面样式。准备明天开会喇，这次不会鸽掉喇哈哈哈。
@@ -668,6 +678,8 @@ admin.site.register(Test)
 
 ![Image text](https://github.com/Pangxiaox/Cataract-Platform/blob/master/Shot/5.PNG)
 
+
+
 ### 9.8 新的安排
 
 今天开会了，这周主要安排就是数据库设计，今天先用excel做了我负责部分的属性名以及对应数据类型的设计，还没对数据库进行讨论优化，然后优化完毕之后应该就是打算在Pycharm的相应子应用下的models.py中建表了，然后进行数据库迁移，并尝试用加了模板的HTML代码实现POST和GET等相关请求。
@@ -679,6 +691,8 @@ admin.site.register(Test)
 子应用命名：InformTable
 
 HTML：DetailInform.html
+
+
 
 ### 9.9 静态文件配置
 
@@ -706,4 +720,89 @@ STATICFILES_DIRS = [
 
 4.此时在static_files添加的任何静态文件都可以使用网址 /static/文件在static_files中的路径来访问了
 
-### 9.10 Django路由
+
+
+### 9.10 Django路由（入门篇）
+
+参考自 https://blog.csdn.net/lczdada/article/details/82818129 
+
+##### 路由定义位置
+
+Django的主要路由信息定义在工程同名目录下的urls.py文件中，该文件是Django解析路由的入口。
+
+##### 路由解析顺序
+
+Django在接收到一个请求时，从主路由文件中的urlpatterns列表中以由上至下的顺序查找对应路由规则，如果发现规则为include包含，则再进入被包含的urls中的urlpatterns列表由上至下进行查询。
+
+```python
+urlpatterns = [
+    url(r'^say', views.say),
+    url(r'^sayhello', views.sayhello),
+]
+```
+
+▲如上图，即使访问sayhello/路径，预期应该进入sayhello视图执行，但实际优先查找到了say路由规则也与sayhello/路径匹配，实际进入了say视图执行。
+
+⭐好像是当url结尾没有斜线 / 的时候会发生上述错误，而当url结尾加上了斜线 / 时错误不会发生。如url(r'^say/',views.say)和url(r'^sayhello/', views.sayhello)
+
+##### 路由命名与reverse反解析
+
+1.路由命名
+
+（1）在使用include函数定义路由时，可以使用namespace参数定义路由的命名空间。
+
+```python
+url(r'^users/', include('users.urls', namespace='users')),
+```
+
+命名空间表示，凡是users.urls中定义的路由，均属于namespace指明的users名下。
+
+命名空间的作用：避免不同应用中的路由使用了相同的名字发生冲突，使用命名空间区别开
+
+（2）定义普通路由，可以使用name参数指明路由的名字。
+
+```python
+urlpatterns = [
+    url(r'^index/$', views.index, name='index'),
+    url(r'^say', views.say, name='say'),
+]
+```
+
+2.reverse反解析
+
+```python
+from django.core.urlresolvers import reverse
+
+
+def index(request):
+    return HttpResponse("hello the world!")
+
+
+def say(request):
+    url = reverse('users:index')  # 返回 /users/index/
+    print(url)
+    return HttpResponse('say')
+```
+
+- 对于未指明namespace的，reverse(路由name)
+- 对于指明namespace的，reverse(命名空间namespace:路由name)
+
+##### 路径结尾斜线 / 的说明
+
+Django中定义路由时，通常以斜线/结尾，其好处是用户访问不以斜线/结尾的相同路径时，Django会把用户重定向到以斜线/结尾的路径上，而不会返回404不存在。
+
+```python
+urlpatterns = [
+    url(r'^index/$', views.index, name='index'),
+]
+```
+
+用户访问 index 或者 index/ 网址，均能访问到index视图。
+
+##### 关于url的其他说明
+
+- 每个正则表达式前面的'r' 是可选的但是建议加上。
+- ^是起始符号，$是终结符号。如url(r'^index/$' , views.index)
+
+⭐感觉URL路由这块还是有很多东西值得推敲的，明天继续研究
+
