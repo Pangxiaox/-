@@ -814,4 +814,92 @@ urlpatterns = [
 
 
 
-### 9.12
+### 9.15 病历部分优化
+
+还是在学校里工作效率高~~
+
+之前的页面遇到一个问题就是都是数据库新增的，导致每次填写时都会新建对象，而且难以实现随时多次重复填写修改的情况，现在通过参考网上资料例子，对代码作出了较大的改动，现在可以多次对病历信息进行修改，与数据库实现同步。主要代码放到了GitHub上。
+
+⭐关键代码如下：
+
+```python
+def editdiagnose(request, id):
+    personal_info = PersonalInformation.objects.get(id=id) # 返回一个对象
+    if request.method == "GET":
+        return render(request, "CheckInform.html", {"personal_info":personal_info})
+    else:
+        # part 1
+        name = request.POST.get("name")
+        age = request.POST.get("age")
+        sex = request.POST.get("sex")
+        nation = request.POST.get("nation")
+        #omit something
+       
+        p_info = PersonalInformation.objects.filter(id=id)  # 返回的是一个对象列表,QuerySet
+        
+        p_info.update(age=age)
+        p_info.update(name=name)
+        p_info.update(sex=sex)
+        p_info.update(nation=nation)
+        #omit something
+```
+
+```html
+ <li><a href="{% url 'edit' items.id %}">编辑</a></li>
+```
+
+```python
+urlpatterns = [
+  	#omit something
+    url(r'^editdiagnose/(?P<id>[0-9]*)/edit$', views.editdiagnose, name="edit"),
+]
+```
+
+1.关于editdiagnose方法：
+
+A. 多参数问题——要在editdiagnose方法中添加一个参数id，其次还要在url中把这个id传递进去。
+
+B. 如果是单纯查看功能，即if部分代码，GET，然后在对应的HTML的部分标签里添加如下所示的value属性之类，以select、input、textarea三个为例：
+
+```html
+<div class="col-sm-2">
+	<label>性别：</label>
+		<select class="form-control" name="sex">
+			<option value="男" {% if personal_info.sex == "男" %} selected="selected" {% endif %}>男</option>
+			<option value="女" {% if personal_info.sex == "女" %} selected="selected" {% endif %}>女</option>
+		</select>
+</div>
+```
+
+⚪select下拉选择框，加以{% if %}判断数据库内容来确定默认显示的值
+
+```html
+<div class="col-sm-2">
+	<label>姓名：</label>
+		<input type="text" name="name" class="form-control" value="{{ personal_info.name }}">
+</div>
+```
+
+⚪input普通输入框，加入value属性
+
+```html
+<div class="col-sm-5 col-sm-offset-1">
+    <div class="form-group">
+        <label>主诉</label>
+           <textarea name="main_suit" class="form-control" placeholder="" rows="6">{{ essential_info.main_suit }}</textarea>
+     </div>
+</div>
+```
+
+⚪textarea文本框，因为没有value属性，所以可以直接作为文本框内容
+
+C. 如果需要做出修改功能，即else部分代码，重新获取一次输入框的值，然后再做更新操作。
+
+2.关于urlpatterns：将正则的内容括起来进行书写。优化正则匹配，注意P是大写不是小写，且这个组名必须和加到参数名保持一致（本例子里是id）
+
+▲一个url例子： http://127.0.0.1:8000/editdiagnose/999999/edit （999999为id）
+
+3.关于上面的HTML一行代码：template中可以使用**"{% url  'app_name:url_name'  param %}"**来完成对应的url的跳转。其中app_name是应用名，url_name是目标网址，param是地址的参数。
+
+▲由于我们只有一个根目录下的urls.py，所以可以按上图所示，只需要url_name，即对应urlpatterns里的url的name。
+
