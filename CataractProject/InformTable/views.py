@@ -1,6 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from InformTable.models import PersonalInformation, EssentialInformation
-# Create your views here.
 
 
 def postdiagnose(request):
@@ -14,7 +13,7 @@ def postdiagnose(request):
         info.nation = request.POST.get("nation")
         info.marriage = request.POST.get("marriage")
         info.occupation = request.POST.get("occupation")
-        info.birthplace = request.POST.get("birthplace")
+        info.p_birthplace = request.POST.get("p_birthplace")
         info.address = request.POST.get("address")
         info.medicalhistory_reporter = request.POST.get("medicalhistory_reporter")
         info.admission_date = request.POST.get("admission_date")
@@ -34,12 +33,12 @@ def postdiagnose(request):
         info2.vaccination_allergy_history = request.POST.get("vaccination_allergy_history")
         info2.surgery_history = request.POST.get("surgery_history")
         info2.past_history_remarks = request.POST.get("past_history_remarks")
-        info2.birthplace = request.POST.get("birthplace")
+        info2.e_birthplace = request.POST.get("e_birthplace")
         info2.smoking_hobbies = request.POST.get("smoking_hobbies")
         info2.drinking_hobbies = request.POST.get("drinking_hobbies")
         info2.epidemic_water_contact_history = request.POST.get("epidemic_water_contact_history")
         info2.personal_history_remark = request.POST.get("personal_history_remark")
-        info2.marriage = request.POST.get("marriage")
+        info2.marriage_history = request.POST.get("marriage_history")
         info2.marital_reproductive_history_remark = request.POST.get("marital_reproductive_history_remark")
         info2.menopause = request.POST.get("menopause")
         info2.menstrual_history_remark = request.POST.get("menstrual_history_remark")
@@ -51,3 +50,100 @@ def postdiagnose(request):
         info2.family_history_remark = request.POST.get("family_history_remark")
         info2.save()
     return render(request, "DetailInform.html")
+
+
+def showpatientlist(request):
+    patientlist = PersonalInformation.objects.all()
+    return render(request, "PatientsList.html", {"p_list": patientlist})
+
+
+def editdiagnose(request, id):
+    personal_info = PersonalInformation.objects.get(id=id)
+    essential_info = EssentialInformation.objects.get(id=id)
+    if request.method == "GET":
+        return render(request, "CheckInform.html", {"personal_info":personal_info, "essential_info":essential_info})
+    else:
+
+        # part 1
+        name = request.POST.get("name")
+        age = request.POST.get("age")
+        sex = request.POST.get("sex")
+        nation = request.POST.get("nation")
+        marriage = request.POST.get("marriage")
+        occupation = request.POST.get("occupation")
+        p_birthplace = request.POST.get("p_birthplace")
+        address = request.POST.get("address")
+        medicalhistory_reporter = request.POST.get("medicalhistory_reporter")
+
+        p_info = PersonalInformation.objects.filter(id=id)  # 返回的是一个对象列表,QuerySet
+
+        p_info.update(age=age)
+        p_info.update(name=name)
+        p_info.update(sex=sex)
+        p_info.update(nation=nation)
+        p_info.update(marriage=marriage)
+        p_info.update(occupation=occupation)
+        p_info.update(p_birthplace=p_birthplace)
+        p_info.update(address=address)
+        p_info.update(medicalhistory_reporter=medicalhistory_reporter)
+
+        # part 2
+        main_suit = request.POST.get("main_suit")
+        medicalhistory_present = request.POST.get("medicalhistory_present")
+        tuberculosis_history = request.POST.get("tuberculosis_history")
+        hepatitis_history = request.POST.get("hepatitis_history")
+        other_infectious_diseases_history = request.POST.get("other_infectious_diseases_history")
+        hypertension_history = request.POST.get("hypertension_history")
+        diabetes_mellitus_history = request.POST.get("diabetes_mellitus_history")
+        chronic_disease_history = request.POST.get("chronic_disease_history")
+        heart_disease_history = request.POST.get("heart_disease_history")
+        vaccination_allergy_history = request.POST.get("vaccination_allergy_history")
+        surgery_history = request.POST.get("surgery_history")
+        past_history_remarks = request.POST.get("past_history_remarks")
+        e_birthplace = request.POST.get("e_birthplace")
+        smoking_hobbies = request.POST.get("smoking_hobbies")
+        drinking_hobbies = request.POST.get("drinking_hobbies")
+        epidemic_water_contact_history = request.POST.get("epidemic_water_contact_history")
+        personal_history_remark = request.POST.get("personal_history_remark")
+        marriage_history = request.POST.get("marriage_history")
+        marital_reproductive_history_remark = request.POST.get("marital_reproductive_history_remark")
+        menopause = request.POST.get("menopause")
+        menstrual_history_remark = request.POST.get("menstrual_history_remark")
+        diabetes_mellitus_family_history = request.POST.get("diabetes_mellitus_family_history")
+        coronary_heart_disease_family_history = request.POST.get("coronary_heart_disease_family_history")
+        stroke_family_history = request.POST.get("stroke_family_history")
+        tumors_family_history = request.POST.get("tumors_family_history")
+        hypertension_family_history = request.POST.get("hypertension_family_history")
+        family_history_remark = request.POST.get("family_history_remark")
+
+        e_info = EssentialInformation.objects.filter(id=id)
+
+        e_info.update(main_suit=main_suit)
+        e_info.update(medicalhistory_present=medicalhistory_present)
+        e_info.update(tuberculosis_history=tuberculosis_history)
+        e_info.update(hepatitis_history=hepatitis_history)
+        e_info.update(other_infectious_diseases_history=other_infectious_diseases_history)
+        e_info.update(hypertension_history=hypertension_history)
+        e_info.update(diabetes_mellitus_history=diabetes_mellitus_history)
+        e_info.update(chronic_disease_history=chronic_disease_history)
+        e_info.update(heart_disease_history=heart_disease_history)
+        e_info.update(vaccination_allergy_history=vaccination_allergy_history)
+        e_info.update(surgery_history=surgery_history)
+        e_info.update(past_history_remarks=past_history_remarks)
+        e_info.update(e_birthplace=e_birthplace)
+        e_info.update(smoking_hobbies=smoking_hobbies)
+        e_info.update(drinking_hobbies=drinking_hobbies)
+        e_info.update(epidemic_water_contact_history=epidemic_water_contact_history)
+        e_info.update(personal_history_remark=personal_history_remark)
+        e_info.update(marriage_history=marriage_history)
+        e_info.update(marital_reproductive_history_remark=marital_reproductive_history_remark)
+        e_info.update(menopause=menopause)
+        e_info.update(menstrual_history_remark=menstrual_history_remark)
+        e_info.update(diabetes_mellitus_family_history=diabetes_mellitus_family_history)
+        e_info.update(coronary_heart_disease_family_history=coronary_heart_disease_family_history)
+        e_info.update(stroke_family_history=stroke_family_history)
+        e_info.update(tumors_family_history=tumors_family_history)
+        e_info.update(hypertension_family_history=hypertension_family_history)
+        e_info.update(family_history_remark=family_history_remark)
+
+        return redirect('/patientslist')

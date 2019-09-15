@@ -19,5 +19,7 @@ from InformTable import views
 
 urlpatterns = [
     url(r'admin/', admin.site.urls),
-    url(r'^postdiagnose/', views.postdiagnose)
+    url(r'^postdiagnose/', views.postdiagnose),
+    url(r'^patientslist/', views.showpatientlist),
+    url(r'^editdiagnose/(?P<id>[0-9]*)/edit$', views.editdiagnose, name="edit"),
 ]

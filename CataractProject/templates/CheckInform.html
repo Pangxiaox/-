@@ -45,18 +45,18 @@
 								</div>
 								<div class="col-sm-2">
 									<label>姓名：</label>
-									<input type="text" class="form-control" name="name">
+									<input type="text" name="name" class="form-control" value="{{ personal_info.name }}">
 								</div>
 								<div class="col-sm-2">
 									<label>性别：</label>
 									<select class="form-control" name="sex">
-										<option value="男" selected>男</option>
-										<option value="女">女</option>
+										<option value="男" {% if personal_info.sex == "男" %} selected="selected" {% endif %}>男</option>
+										<option value="女" {% if personal_info.sex == "女" %} selected="selected" {% endif %}>女</option>
 									</select>
 								</div>
 								<div class="col-sm-3">
 									<label>住院号：</label>
-									<input type="text" class="form-control" name="id">
+									<input type="text" class="form-control" value="{{ personal_info.id }}" name="id" id="id">
 								</div>
 							 </div>
                         </div>
@@ -143,14 +143,14 @@
                                     <div class="col-sm-3 col-sm-offset-1">
                                         <div class="form-group">
                                             <label>姓名</label>
-                                            <input type="text" name="name" class="form-control" id="exampleInputEmail0" placeholder="请输入姓名">
+                                            <input type="text" value="{{ personal_info.name }}" name="name" class="form-control" id="name" placeholder="请输入姓名">
                                         </div>
                                     </div>
 
                                     <div class="col-sm-2">
                                         <div class="form-group">
                                             <label>年龄</label>
-                                            <input type="text" name="age" class="form-control" id="exampleInputEmail2" placeholder="请输入年龄">
+                                            <input type="text" name="age" value="{{ personal_info.age }}" class="form-control" id="exampleInputEmail2" placeholder="请输入年龄">
                                         </div>
                                     </div>
 
@@ -158,8 +158,8 @@
                                         <div class="form-group">
                                             <label>性别</label>
                                             <select class="form-control" name="sex">
-                                                <option value="男" name="男" selected>男</option>
-                                                <option value="女" name="女">女</option>
+                                                <option value="男" {% if personal_info.sex == "男" %} selected="selected" {% endif %}>男</option>
+                                                <option value="女" {% if personal_info.sex == "女" %} selected="selected" {% endif %}>女</option>
                                             </select>
                                         </div>
                                     </div>
@@ -167,14 +167,14 @@
                                     <div class="col-sm-2">
                                         <div class="form-group">
                                             <label>民族</label>
-											<input type="text" name="nation" class="form-control" placeholder="请输入民族">
+											<input type="text" value="{{ personal_info.nation }}" name="nation"  class="form-control" placeholder="请输入民族">
                                         </div>
                                     </div>
 
                                     <div class="col-sm-5 col-sm-offset-1">
                                         <div class="form-group">
                                             <label>职业</label>
-                                            <input type="text" name="occupation" class="form-control" id="exampleInputEmail1" placeholder="请输入职业">
+                                            <input type="text" value="{{ personal_info.occupation }}" name="occupation" class="form-control" id="exampleInputEmail1" placeholder="请输入职业">
                                         </div>
                                     </div>
 
@@ -182,8 +182,8 @@
                                         <div class="form-group">
                                             <label>婚姻</label>
                                             <select class="form-control" name="marriage">
-                                                <option value="已婚" name="已婚" selected>已婚</option>
-                                                <option value="未婚" name="未婚">未婚</option>
+                                                <option value="已婚" {% if personal_info.marriage == "已婚" %} selected="selected" {% endif %}>已婚</option>
+                                                <option value="未婚" {% if personal_info.marriage == "未婚" %} selected="selected" {% endif %}>未婚</option>
                                             </select>
                                         </div>
                                     </div>
@@ -191,14 +191,14 @@
                                     <div class="col-sm-5 col-sm-offset-1">
                                         <div class="form-group">
                                             <label>出生地</label>
-                                            <input type="text" name="p_birthplace" class="form-control" id="exampleInputEmail1" placeholder="请输入出生地">
+                                            <input type="text" value="{{ personal_info.p_birthplace }}" name="p_birthplace" class="form-control" id="exampleInputEmail1" placeholder="请输入出生地">
                                         </div>
                                     </div>
 
                                     <div class="col-sm-5">
                                         <div class="form-group">
                                             <label>住址</label>
-                                            <input type="text" name="address" class="form-control" placeholder="请输入住址">
+                                            <input type="text" value="{{ personal_info.address }}" name="address" class="form-control" placeholder="请输入住址">
                                         </div>
                                     </div>
 
@@ -206,7 +206,7 @@
 									<div class="col-sm-3 col-sm-offset-1">
 										<div class="form-group">
 											<label>病史报告者</label>
-											<input type="text" name="medicalhistory_reporter" class="form-control" placeholder="请输入病史报告者">
+											<input type="text" value="{{ personal_info.medicalhistory_reporter }}" name="medicalhistory_reporter" class="form-control" placeholder="请输入病史报告者">
 										</div>
 									</div>
 
@@ -233,14 +233,14 @@
                                 <div class="col-sm-5 col-sm-offset-1">
                                     <div class="form-group">
                                         <label>主诉</label>
-                                        <textarea name="main_suit" class="form-control" placeholder="" rows="6"></textarea>
+                                        <textarea name="main_suit" class="form-control" placeholder="" rows="6">{{ essential_info.main_suit }}</textarea>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-5">
                                     <div class="form-group">
                                         <label>现病史</label>
-                                        <textarea name="medicalhistory_present" class="form-control" placeholder="" rows="6"></textarea>
+                                        <textarea name="medicalhistory_present" class="form-control" placeholder="" rows="6">{{ essential_info.medicalhistory_present }}</textarea>
                                     </div>
                                 </div>
 
@@ -248,8 +248,8 @@
                                     <div class="form-group">
                                         <label>有无结核病史</label>
                                         <select class="form-control" name="tuberculosis_history">
-                                            <option value="有">有</option>
-                                            <option value="无" selected>无</option>
+                                            <option value="有" {% if essential_info.tuberculosis_history == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if essential_info.tuberculosis_history == "无" %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -258,8 +258,8 @@
                                     <div class="form-group">
                                         <label>有无肝炎史</label>
                                         <select class="form-control" name="hepatitis_history">
-                                            <option value="有">有</option>
-                                            <option value="无" selected>无</option>
+                                            <option value="有" {% if essential_info.hepatitis_history == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if essential_info.hepatitis_history == "无" %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -268,8 +268,8 @@
                                     <div class="form-group">
                                         <label>有无其他传染病史</label>
                                         <select class="form-control" name="other_infectious_diseases_history">
-                                            <option value="有">有</option>
-                                            <option value="无" selected>无</option>
+                                            <option value="有" {% if essential_info.other_infectious_diseases_history == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if essential_info.other_infectious_diseases_history == "无" %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -278,8 +278,8 @@
                                     <div class="form-group">
                                         <label>有无慢性病病史</label>
                                         <select class="form-control" name="chronic_disease_history">
-                                            <option value="有">有</option>
-                                            <option value="无" selected>无</option>
+                                            <option value="有" {% if essential_info.chronic_disease_history == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if essential_info.chronic_disease_history == "无" %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -288,8 +288,8 @@
                                     <div class="form-group">
                                         <label>有无高血压史</label>
                                         <select class="form-control" name="hypertension_history">
-                                            <option value="有">有</option>
-                                            <option value="无" selected>无</option>
+                                            <option value="有" {% if essential_info.hypertension_history == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if essential_info.hypertension_history == "无" %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -298,8 +298,8 @@
                                     <div class="form-group">
                                         <label>有无糖尿病史</label>
                                         <select class="form-control" name="diabetes_mellitus_history">
-                                            <option value="有">有</option>
-                                            <option value="无" selected>无</option>
+                                            <option value="有" {% if essential_info.diabetes_mellitus_history == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if essential_info.diabetes_mellitus_history == "无" %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -308,8 +308,8 @@
                                     <div class="form-group">
                                         <label>有无心脏病史</label>
                                         <select class="form-control" name="heart_disease_history">
-                                            <option value="有">有</option>
-                                            <option value="无" selected>无</option>
+                                            <option value="有" {% if essential_info.heart_disease_history == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if essential_info.heart_disease_history == "无" %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -318,8 +318,8 @@
                                     <div class="form-group">
                                         <label>按时接种疫苗有无过敏史</label>
                                         <select class="form-control" name="vaccination_allergy_history">
-                                            <option value="有">有</option>
-                                            <option value="无" selected>无</option>
+                                            <option value="有" {% if essential_info.vaccination_allergy_history == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if essential_info.vaccination_allergy_history == "无" %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -328,8 +328,8 @@
                                     <div class="form-group">
                                         <label>有无手术史</label>
                                         <select class="form-control" name="surgery_history">
-                                            <option value="有">有</option>
-                                            <option value="无" selected>无</option>
+                                            <option value="有" {% if essential_info.surgery_history == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if essential_info.surgery_history == "无" %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -337,14 +337,14 @@
                                 <div class="col-sm-10 col-sm-offset-1">
                                     <div class="form-group">
                                         <label>关于上述既往病史的备注</label>
-                                        <textarea name="past_history_remarks" class="form-control" placeholder="" rows="2"></textarea>
+                                        <textarea name="past_history_remarks" class="form-control" placeholder="" rows="2">{{ essential_info.past_history_remarks }}</textarea>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4 col-sm-offset-1">
                                     <div class="form-group">
                                         <label>出生地</label>
-                                        <input name="e_birthplace" type="text" class="form-control" id="exampleInputEmail0" placeholder="请输入出生地">
+                                        <input name="e_birthplace" value="{{ essential_info.e_birthplace }}" type="text" class="form-control" id="exampleInputEmail0" placeholder="请输入出生地">
                                     </div>
                                 </div>
 
@@ -352,8 +352,8 @@
                                     <div class="form-group">
                                         <label>有无吸烟嗜好</label>
                                         <select class="form-control" name="smoking_hobbies">
-                                            <option value="有">有</option>
-                                            <option value="无" selected>无</option>
+                                            <option value="有" {% if essential_info.smoking_hobbies == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if essential_info.smoking_hobbies == "无" %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -362,8 +362,8 @@
                                     <div class="form-group">
                                         <label>有无饮酒嗜好</label>
                                         <select class="form-control" name="drinking_hobbies">
-                                            <option value="有">有</option>
-                                            <option value="无" selected>无</option>
+                                            <option value="有" {% if essential_info.drinking_hobbies == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if essential_info.drinking_hobbies == "无" %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -372,8 +372,8 @@
                                     <div class="form-group">
                                         <label>有无疫水接触史</label>
                                         <select class="form-control" name="epidemic_water_contact_history">
-                                            <option value="有">有</option>
-                                            <option value="无" selected>无</option>
+                                            <option value="有" {% if essential_info.epidemic_water_contact_history == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if essential_info.epidemic_water_contact_history == "无" %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -381,7 +381,7 @@
                                 <div class="col-sm-10 col-sm-offset-1">
                                     <div class="form-group">
                                         <label>关于上述个人史的备注</label>
-                                        <textarea name="personal_history_remark" class="form-control" placeholder="" rows="2"></textarea>
+                                        <textarea name="personal_history_remark" class="form-control" placeholder="" rows="2">{{ essential_info.personal_history_remark }}</textarea>
                                     </div>
                                 </div>
 
@@ -389,8 +389,8 @@
                                     <div class="form-group">
                                         <label>婚育史: 是否已婚</label>
                                         <select class="form-control" name="marriage_history">
-                                            <option value="有">是</option>
-                                            <option value="无" selected>否</option>
+                                            <option value="是" {% if essential_info.marriage_history == "有" %} selected="selected" {% endif %}>是</option>
+                                            <option value="否" {% if essential_info.marriage_history == "无" %} selected="selected" {% endif %}>否</option>
                                         </select>
                                     </div>
                                 </div>
@@ -398,7 +398,7 @@
                                 <div class="col-sm-8">
                                     <div class="form-group">
                                         <label>关于婚育史的备注</label>
-                                        <input name="marital_reproductive_history_remark" type="text" class="form-control" id="exampleInputEmail0">
+                                        <input value="{{ essential_info.marital_reproductive_history_remark }}" name="marital_reproductive_history_remark" type="text" class="form-control" id="exampleInputEmail0">
                                     </div>
                                 </div>
 
@@ -406,8 +406,8 @@
                                     <div class="form-group">
                                         <label>月经史: 是否已绝经</label>
                                         <select class="form-control" name="menopause">
-                                            <option value="有">是</option>
-                                            <option value="无" selected>否</option>
+                                            <option value="是" {% if essential_info.menopause == "有" %} selected="selected" {% endif %}>是</option>
+                                            <option value="否" {% if essential_info.menopause == "无" %} selected="selected" {% endif %}>否</option>
                                         </select>
                                     </div>
                                 </div>
@@ -415,7 +415,7 @@
                                 <div class="col-sm-8">
                                     <div class="form-group">
                                         <label>关于月经史的备注</label>
-                                        <input name="menstrual_history_remark" type="text" class="form-control" id="exampleInputEmail0">
+                                        <input value="{{ essential_info.menstrual_history_remark }}" name="menstrual_history_remark" type="text" class="form-control" id="exampleInputEmail0">
                                     </div>
                                 </div>
 
@@ -423,8 +423,8 @@
                                     <div class="form-group">
                                         <label>有无糖尿病家族史</label>
                                         <select class="form-control" name="diabetes_mellitus_family_history">
-                                            <option value="有">有</option>
-                                            <option value="无" selected>无</option>
+                                            <option value="有" {% if essential_info.diabetes_mellitus_family_history == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if essential_info.diabetes_mellitus_family_history == "无" %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -433,8 +433,8 @@
                                     <div class="form-group">
                                         <label>有无冠心病家族史</label>
                                         <select class="form-control" name="coronary_heart_disease_family_history">
-                                            <option value="有">有</option>
-                                            <option value="无" selected>无</option>
+                                            <option value="有" {% if essential_info.coronary_heart_disease_family_history == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if essential_info.coronary_heart_disease_family_history == "无" %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -443,8 +443,8 @@
                                     <div class="form-group">
                                         <label>有无中风家族史</label>
                                         <select class="form-control" name="stroke_family_history">
-                                            <option value="有">有</option>
-                                            <option value="无" selected>无</option>
+                                            <option value="有" {% if essential_info.stroke_family_history == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if essential_info.stroke_family_history == "无" %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -453,8 +453,8 @@
                                     <div class="form-group">
                                         <label>有无肿瘤家族史</label>
                                         <select class="form-control" name="tumors_family_history">
-                                            <option value="有">有</option>
-                                            <option value="无" selected>无</option>
+                                            <option value="有" {% if essential_info.tumors_family_history == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if essential_info.tumors_family_history == "无" %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -463,8 +463,8 @@
                                     <div class="form-group">
                                         <label>有无高血压家族史</label>
                                         <select class="form-control" name="hypertension_family_history">
-                                            <option value="有">有</option>
-                                            <option value="无" selected>无</option>
+                                            <option value="有" {% if essential_info.hypertension_family_history == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if essential_info.hypertension_family_history == "无" %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -472,7 +472,7 @@
                                 <div class="col-sm-10 col-sm-offset-1">
                                     <div class="form-group">
                                         <label>关于上述家族史的备注</label>
-                                        <textarea name="family_history_remark" class="form-control" placeholder="" rows="2"></textarea>
+                                        <textarea name="family_history_remark" class="form-control" placeholder="" rows="2">{{ essential_info.family_history_remark }}</textarea>
                                     </div>
                                 </div>
                             </div>

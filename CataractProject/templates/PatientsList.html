@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% for items in p_list %}
+        <ul>
+        <li>{{ items.id }}</li>
+        <li>{{ items.name }}</li>
+        <li><a href="{% url 'edit' items.id %}">编辑</a></li>
+        </ul>
+        <br/>
+    {% endfor %}
+</body>
+</html>

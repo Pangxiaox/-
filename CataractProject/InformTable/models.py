@@ -16,8 +16,8 @@ class PersonalInformation(models.Model):
         ('已婚', 'true'),
         ('未婚', 'false'),
     )
-    marriage = models.CharField(max_length=10, choices=MARRY_CHOICES)
-    birthplace = models.CharField(max_length=30)
+    marriage = models.CharField(max_length=2, choices=MARRY_CHOICES)
+    p_birthplace = models.CharField(max_length=30)
     address = models.CharField(max_length=30)
     medicalhistory_reporter = models.CharField(max_length=10)
     admission_date = models.DateField()
@@ -29,8 +29,8 @@ class EssentialInformation(models.Model):
     main_suit = models.TextField()
     medicalhistory_present = models.TextField()
     Y_N_CHOICES = (
-        ('是', 'yes'),
-        ('否', 'no'),
+        ('有', 'yes'),
+        ('无', 'no'),
     )
     tuberculosis_history = models.CharField(max_length=1, choices=Y_N_CHOICES)
     hepatitis_history = models.CharField(max_length=1, choices=Y_N_CHOICES)
@@ -42,16 +42,12 @@ class EssentialInformation(models.Model):
     vaccination_allergy_history = models.CharField(max_length=1, choices=Y_N_CHOICES)
     surgery_history = models.CharField(max_length=1, choices=Y_N_CHOICES)
     past_history_remarks = models.TextField(null=True, blank=True)
-    birthplace = models.CharField(max_length=30)
+    e_birthplace = models.CharField(max_length=30)
     smoking_hobbies = models.CharField(max_length=1, choices=Y_N_CHOICES)
     drinking_hobbies = models.CharField(max_length=1, choices=Y_N_CHOICES)
     epidemic_water_contact_history = models.CharField(max_length=1, choices=Y_N_CHOICES)
     personal_history_remark = models.TextField(null=True, blank=True)
-    MARRY_CHOICES = (
-        ('已婚', 'true'),
-        ('未婚', 'false'),
-    )
-    marriage = models.CharField(max_length=1, choices=MARRY_CHOICES)
+    marriage_history = models.CharField(max_length=1, choices=Y_N_CHOICES)  # 婚育史
     marital_reproductive_history_remark = models.TextField(null=True, blank=True)
     menopause = models.CharField(max_length=1, choices=Y_N_CHOICES)
     menstrual_history_remark = models.CharField(max_length=1, choices=Y_N_CHOICES)
