@@ -78,8 +78,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # 或者使用 mysql.connector.django
         'NAME': 'cataractproject',
-        'USER': 'xxx',
-        'PASSWORD': 'xxx',
+        'USER': 'root',
+        'PASSWORD': 'a15521287530',
         'HOST': 'localhost',
         'PORT': '3306',
     }

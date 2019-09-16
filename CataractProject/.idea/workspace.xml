@@ -13,6 +13,7 @@
       <list>
         <option value="JavaScript File" />
         <option value="Python Script" />
+        <option value="CSS File" />
         <option value="HTML File" />
       </list>
     </option>
@@ -21,11 +22,18 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/images" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\CataractProject\templates" />
+      <recent name="D:\CataractProject\static\js" />
+      <recent name="D:\CataractProject\static" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\CataractProject\static\images" />
       <recent name="D:\CataractProject" />
     </key>
   </component>
@@ -92,6 +100,10 @@
       <workItem from="1568546199755" duration="3776000" />
       <workItem from="1568551403782" duration="1659000" />
       <workItem from="1568561938055" duration="3448000" />
+      <workItem from="1568602088972" duration="2429000" />
+      <workItem from="1568626893923" duration="696000" />
+      <workItem from="1568631980537" duration="6837000" />
+      <workItem from="1568643948939" duration="1925000" />
     </task>
     <servers />
   </component>

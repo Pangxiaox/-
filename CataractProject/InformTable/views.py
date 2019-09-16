@@ -61,7 +61,7 @@ def editdiagnose(request, id):
     personal_info = PersonalInformation.objects.get(id=id)
     essential_info = EssentialInformation.objects.get(id=id)
     if request.method == "GET":
-        return render(request, "CheckInform.html", {"personal_info":personal_info, "essential_info":essential_info})
+        return render(request, "EditInform.html", {"personal_info": personal_info, "essential_info": essential_info})
     else:
 
         # part 1
@@ -147,3 +147,7 @@ def editdiagnose(request, id):
         e_info.update(family_history_remark=family_history_remark)
 
         return redirect('/patientslist')
+
+
+def doctorlogin(request):
+    return render(request, "DoctorLogin.html")

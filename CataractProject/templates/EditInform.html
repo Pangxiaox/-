@@ -40,13 +40,14 @@
                             <h3 class="wizard-title">病历</h3>
                             <br/>
 							<div class="row">
-								<div class="col-sm-3 col-sm-offset-1">
-									<label>第&nbsp;&nbsp;&nbsp;&nbsp;次住院</label><input type="text" class="form-control">
-								</div>
-								<div class="col-sm-2">
+								<div class="col-sm-2 col-sm-offset-1">
 									<label>姓名：</label>
 									<input type="text" name="name" class="form-control" value="{{ personal_info.name }}">
 								</div>
+                                <div class="col-sm-2">
+                                    <label>年龄：</label>
+                                    <input type="text" class="form-control" name="age" value="{{ personal_info.age }}">
+                                </div>
 								<div class="col-sm-2">
 									<label>性别：</label>
 									<select class="form-control" name="sex">
@@ -389,8 +390,8 @@
                                     <div class="form-group">
                                         <label>婚育史: 是否已婚</label>
                                         <select class="form-control" name="marriage_history">
-                                            <option value="是" {% if essential_info.marriage_history == "有" %} selected="selected" {% endif %}>是</option>
-                                            <option value="否" {% if essential_info.marriage_history == "无" %} selected="selected" {% endif %}>否</option>
+                                            <option value="有" {% if essential_info.marriage_history == "有" %} selected="selected" {% endif %}>是</option>
+                                            <option value="无" {% if essential_info.marriage_history == "无" %} selected="selected" {% endif %}>否</option>
                                         </select>
                                     </div>
                                 </div>
@@ -406,8 +407,8 @@
                                     <div class="form-group">
                                         <label>月经史: 是否已绝经</label>
                                         <select class="form-control" name="menopause">
-                                            <option value="是" {% if essential_info.menopause == "有" %} selected="selected" {% endif %}>是</option>
-                                            <option value="否" {% if essential_info.menopause == "无" %} selected="selected" {% endif %}>否</option>
+                                            <option value="有" {% if essential_info.menopause == "有" %} selected="selected" {% endif %}>是</option>
+                                            <option value="无" {% if essential_info.menopause == "无" %} selected="selected" {% endif %}>否</option>
                                         </select>
                                     </div>
                                 </div>
@@ -580,8 +581,8 @@
                                     <div class="form-group">
                                         <label>听诊：双侧肺呼吸音是否正常</label>
                                         <select class="form-control">
-                                            <option value="是" selected>是</option>
-                                            <option value="否">否</option>
+                                            <option value="有" selected>是</option>
+                                            <option value="无">否</option>
                                         </select>
                                     </div>
                                 </div>
@@ -620,8 +621,8 @@
                                     <div class="form-group">
                                         <label>听诊：心律是否齐</label>
                                         <select class="form-control">
-                                            <option value="是" selected>是</option>
-                                            <option value="否" >否</option>
+                                            <option value="有" selected>是</option>
+                                            <option value="无" >否</option>
                                         </select>
                                     </div>
                                 </div>
@@ -634,8 +635,8 @@
                                     <div class="form-group">
                                         <label>触诊：全腹是否软</label>
                                         <select class="form-control">
-                                            <option value="是" selected>是</option>
-                                            <option value="否" >否</option>
+                                            <option value="有" selected>是</option>
+                                            <option value="无" >否</option>
                                         </select>
                                     </div>
                                 </div>
@@ -694,8 +695,8 @@
                                     <div class="form-group">
                                         <label>四肢脊柱：活动是否正常</label>
                                         <select class="form-control">
-                                            <option value="是" selected>是</option>
-                                            <option value="否" >否</option>
+                                            <option value="有" selected>是</option>
+                                            <option value="无" >否</option>
                                         </select>
                                     </div>
                                 </div>
@@ -777,8 +778,8 @@
                                         <td>
                                             <label>眼球运动是否正常:</label>
                                             <select>
-                                                <option value="是" class="form-control" selected>是</option>
-                                                <option value="否" class="form-control">否</option>
+                                                <option value="有" class="form-control" selected>是</option>
+                                                <option value="无" class="form-control">否</option>
                                             </select>&nbsp;&nbsp;
                                             <label>眼球有无凸出:</label>
                                             <select>
@@ -789,8 +790,8 @@
                                         <td>
                                             <label>眼球运动是否正常:</label>
                                             <select>
-                                                <option value="是" class="form-control" selected>是</option>
-                                                <option value="否" class="form-control">否</option>
+                                                <option value="有" class="form-control" selected>是</option>
+                                                <option value="无" class="form-control">否</option>
                                             </select>&nbsp;&nbsp;
                                             <label>眼球有无凸出:</label>
                                             <select>
@@ -804,39 +805,39 @@
                                         <td>
                                             <label>泪囊皮肤是否有红肿:</label>
                                             <select>
-                                                <option value="是" class="form-control">是</option>
-                                                <option value="否" class="form-control" selected>否</option>
+                                                <option value="有" class="form-control">是</option>
+                                                <option value="无" class="form-control" selected>否</option>
                                             </select>
                                             <br/><br/>
                                             <label>压迫泪囊是否有分泌物:</label>
                                             <select>
-                                                <option value="是" class="form-control">是</option>
-                                                <option value="否" class="form-control" selected>否</option>
+                                                <option value="有" class="form-control">是</option>
+                                                <option value="无" class="form-control" selected>否</option>
                                             </select>
                                             <br/><br/>
                                             <label>泪道冲洗是否通畅:</label>
                                             <select>
-                                                <option value="是" class="form-control" selected>是</option>
-                                                <option value="否" class="form-control">否</option>
+                                                <option value="有" class="form-control" selected>是</option>
+                                                <option value="无" class="form-control">否</option>
                                             </select>
                                         </td>
                                         <td>
                                             <label>泪囊皮肤是否有红肿:</label>
                                             <select>
-                                                <option value="是" class="form-control">是</option>
-                                                <option value="否" class="form-control" selected>否</option>
+                                                <option value="有" class="form-control">是</option>
+                                                <option value="无" class="form-control" selected>否</option>
                                             </select>
                                             <br/><br/>
                                             <label>压迫泪囊是否有分泌物:</label>
                                             <select>
-                                                <option value="是" class="form-control">是</option>
-                                                <option value="否" class="form-control" selected>否</option>
+                                                <option value="有" class="form-control">是</option>
+                                                <option value="无" class="form-control" selected>否</option>
                                             </select>
                                             <br/><br/>
                                             <label>泪道冲洗是否通畅:</label>
                                             <select>
-                                                <option value="是" class="form-control" selected>是</option>
-                                                <option value="否" class="form-control">否</option>
+                                                <option value="有" class="form-control" selected>是</option>
+                                                <option value="无" class="form-control">否</option>
                                             </select>
                                         </td>
                                     </tr>
@@ -844,14 +845,14 @@
                                         <td><label>结膜</label></td>
                                         <td><label>是否有充血:</label>
                                             <select>
-                                                <option value="是" class="form-control">是</option>
-                                                <option value="否" class="form-control" selected>否</option>
+                                                <option value="有" class="form-control">是</option>
+                                                <option value="无" class="form-control" selected>否</option>
                                             </select>
                                         </td>
                                         <td><label>是否有充血:</label>
                                             <select>
-                                                <option value="是" class="form-control">是</option>
-                                                <option value="否" class="form-control" selected>否</option>
+                                                <option value="有" class="form-control">是</option>
+                                                <option value="无" class="form-control" selected>否</option>
                                             </select>
                                         </td>
                                     </tr>
@@ -859,14 +860,14 @@
                                         <td><label>巩膜</label></td>
                                         <td><label>是否有黄染:</label>
                                             <select>
-                                                <option value="是" class="form-control">是</option>
-                                                <option value="否" class="form-control" selected>否</option>
+                                                <option value="有" class="form-control">是</option>
+                                                <option value="无" class="form-control" selected>否</option>
                                             </select>
                                         </td>
                                         <td><label>是否有黄染:</label>
                                             <select>
-                                                <option value="是" class="form-control">是</option>
-                                                <option value="否" class="form-control" selected>否</option>
+                                                <option value="有" class="form-control">是</option>
+                                                <option value="无" class="form-control" selected>否</option>
                                             </select>
                                         </td>
                                     </tr>
@@ -878,8 +879,8 @@
                                             <hr/>
                                             <label>是否透明:</label>
                                             <select>
-                                                <option value="是" class="form-control" selected>是</option>
-                                                <option value="否" class="form-control">否</option>
+                                                <option value="有" class="form-control" selected>是</option>
+                                                <option value="无" class="form-control">否</option>
                                             </select>
                                         </td>
                                         <td>
@@ -888,8 +889,8 @@
                                             <hr/>
                                             <label>是否透明:</label>
                                             <select>
-                                                <option value="是" class="form-control" selected>是</option>
-                                                <option value="否" class="form-control">否</option>
+                                                <option value="有" class="form-control" selected>是</option>
+                                                <option value="无" class="form-control">否</option>
                                             </select>
                                         </td>
                                     </tr>
@@ -914,8 +915,8 @@
                                             <br/><br/>
                                             <label>房水是否清:</label>
                                             <select>
-                                                <option value="是" class="form-control" selected>是</option>
-                                                <option value="否" class="form-control">否</option>
+                                                <option value="有" class="form-control" selected>是</option>
+                                                <option value="无" class="form-control">否</option>
                                             </select>
                                         </td>
                                         <td>
@@ -937,8 +938,8 @@
                                             <br/><br/>
                                             <label>房水是否清:</label>
                                             <select>
-                                                <option value="是" class="form-control" selected>是</option>
-                                                <option value="否" class="form-control">否</option>
+                                                <option value="有" class="form-control" selected>是</option>
+                                                <option value="无" class="form-control">否</option>
                                             </select>
                                         </td>
                                     </tr>
@@ -946,14 +947,14 @@
                                         <td><label>虹膜</label></td>
                                         <td><label>纹理是否清晰:</label>
                                             <select>
-                                                <option value="是" class="form-control" selected>是</option>
-                                                <option value="否" class="form-control">否</option>
+                                                <option value="有" class="form-control" selected>是</option>
+                                                <option value="无" class="form-control">否</option>
                                             </select>
                                         </td>
                                         <td><label>纹理是否清晰:</label>
                                             <select>
-                                                <option value="是" class="form-control" selected>是</option>
-                                                <option value="否" class="form-control">否</option>
+                                                <option value="有" class="form-control" selected>是</option>
+                                                <option value="无" class="form-control">否</option>
                                             </select>
                                         </td>
                                     </tr>
@@ -969,8 +970,8 @@
                                             </div>
                                             <label>是否存在光反射:</label>
                                             <select>
-                                                <option value="是" class="form-control" selected>是</option>
-                                                <option value="否" class="form-control">否</option>
+                                                <option value="有" class="form-control" selected>是</option>
+                                                <option value="无" class="form-control">否</option>
                                             </select>
                                         </td>
                                         <td>
@@ -983,8 +984,8 @@
                                             </div>
                                             <label>是否存在光反射:</label>
                                             <select>
-                                                <option value="是" class="form-control" selected>是</option>
-                                                <option value="否" class="form-control">否</option>
+                                                <option value="有" class="form-control" selected>是</option>
+                                                <option value="无" class="form-control">否</option>
                                             </select>
                                         </td>
                                     </tr>

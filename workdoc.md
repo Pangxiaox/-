@@ -608,21 +608,21 @@ DATABASES = {
 
 如果是使用MySQL作为数据库，最近总结了一份套路：
 
-1.在【Pycharm】的models.py中建表
+1. 在【Pycharm】的models.py中建表
 
-2.在【MySQL  Workbench】中建立一个数据库，然后在【Pycharm】中settings.py中的DATABASES部分修改为上面说的MySQL形式的，name为刚刚建立的数据库名，对应settings.py中INSTALLED_APPS里也要加入自己建立的app名字（python manage.py startapp myapp)
+2. 在【MySQL  Workbench】中建立一个数据库，然后在【Pycharm】中settings.py中的DATABASES部分修改为上面说的MySQL形式的，name为刚刚建立的数据库名，对应settings.py中INSTALLED_APPS里也要加入自己建立的app名字（python manage.py startapp myapp)
 
 ▲记得首先  `pip install mysqlclient` 安装驱动
 
-3.在【Pycharm】里进行数据库迁移（python manage.py makemigrations -> python manage.py migrate)
+3. 在【Pycharm】里进行数据库迁移（python manage.py makemigrations -> python manage.py migrate)
 
-4.既可以在【Pycharm】中操作数据库，也可以在【MySQL Workbench】中通过SQL语句操作数据库，然后在【Pycharm】视图层返回数据
+4. 既可以在【Pycharm】中操作数据库，也可以在【MySQL Workbench】中通过SQL语句操作数据库，然后在【Pycharm】视图层返回数据
 
 ##### （2）Django Admin管理
 
 Django 自动管理工具是 django.contrib 的一部分，可以在项目的 settings.py 中的 INSTALLED_APPS 看到。
 
-1.激活管理工具
+1. 激活管理工具
 
 urls.py  (Pycharm专业版建立Django项目之后自动生成)
 
@@ -636,7 +636,7 @@ urlpatterns = [
 ]
 ```
 
-2.使用管理工具
+2. 使用管理工具
 
 通过命令 **python manage.py createsuperuser** 来创建超级用户
 
@@ -705,11 +705,11 @@ HTML：DetailInform.html
 
 使用步骤：
 
-1.确保INSTALLED_APPS包含了 `django.contrib.staticfiles`
+1. 确保INSTALLED_APPS包含了 `django.contrib.staticfiles`
 
-2.在项目根目录下创建static_files目录来保存静态文件。
+2. 在项目根目录下创建static_files目录来保存静态文件。
 
-3.在settings.py中修改静态文件的两个参数为：
+3. 在settings.py中修改静态文件的两个参数为：
 
 ```python
 STATIC_URL = '/static/'
@@ -718,7 +718,7 @@ STATICFILES_DIRS = [
 ]
 ```
 
-4.此时在static_files添加的任何静态文件都可以使用网址 /static/文件在static_files中的路径来访问了
+4. 此时在static_files添加的任何静态文件都可以使用网址 /static/文件在static_files中的路径来访问了
 
 
 
@@ -747,7 +747,7 @@ urlpatterns = [
 
 ##### 路由命名与reverse反解析
 
-1.路由命名
+1. 路由命名
 
 （1）在使用include函数定义路由时，可以使用namespace参数定义路由的命名空间。
 
@@ -768,7 +768,7 @@ urlpatterns = [
 ]
 ```
 
-2.reverse反解析
+2. reverse反解析
 
 ```python
 from django.core.urlresolvers import reverse
@@ -855,7 +855,7 @@ urlpatterns = [
 ]
 ```
 
-1.关于editdiagnose方法：
+1. 关于editdiagnose方法：
 
 A. 多参数问题——要在editdiagnose方法中添加一个参数id，其次还要在url中把这个id传递进去。
 
@@ -895,11 +895,25 @@ B. 如果是单纯查看功能，即if部分代码，GET，然后在对应的HTM
 
 C. 如果需要做出修改功能，即else部分代码，重新获取一次输入框的值，然后再做更新操作。
 
-2.关于urlpatterns：将正则的内容括起来进行书写。优化正则匹配，注意P是大写不是小写，且这个组名必须和加到参数名保持一致（本例子里是id）
+2. 关于urlpatterns：将正则的内容括起来进行书写。优化正则匹配，注意P是大写不是小写，且这个组名必须和加到参数名保持一致（本例子里是id）
 
-▲一个url例子： http://127.0.0.1:8000/editdiagnose/999999/edit （999999为id）
+   ▲一个url例子： http://127.0.0.1:8000/editdiagnose/999999/edit （999999为id）
 
-3.关于上面的HTML一行代码：template中可以使用**"{% url  'app_name:url_name'  param %}"**来完成对应的url的跳转。其中app_name是应用名，url_name是目标网址，param是地址的参数。
+3. 关于上面的HTML一行代码：template中可以使用**"{% url  'app_name:url_name'  param %}"**来完成对应的url的跳转。其中app_name是应用名，url_name是目标网址，param是地址的参数。
 
-▲由于我们只有一个根目录下的urls.py，所以可以按上图所示，只需要url_name，即对应urlpatterns里的url的name。
+   ▲由于我们只有一个根目录下的urls.py，所以可以按上图所示，只需要url_name，即对应urlpatterns里的url的name。
+
+
+
+### 9.16 医生登录页面初步完成 + 病历页面再度优化 + 未决问题
+
+1. 用了yy给的模板完成了医生登录页面，目前只是静态界面，后期再来讨论细化动态内容和优化调整页面样式。
+2. 病历页面调整了title部分的几项信息，把后面的“是与否”选项的value属性改为“有与无”，为了和建表时的choices对应起来，优化了一些html文件的命名。
+
+🍉（So far 我想到的，后面想到再加）部分待讨论和解决的问题：
+
+1. 眼部检查部分的HTML代码在yy那里改了部分样式，未并入我这边。
+2. 病历部分HTML代码在yy那里有改动，未并入我这边。如诊断结果部分加上了病情严重程度等输入框。
+3. 在病历当中，婚姻和出生地在两个部分（两个表）中都出现了，另外title部分几项和下面部分的姓名、年龄、性别信息也重复出现了，目前用户是需要填写两次信息，是否需要确保这些值两次都是相同？如何确保？可否只填一次然后第二次时自动为用户显示第一次填写时的值？
+4. 在病历中，出现了月经史，但只针对女性，那么男性是否需要处理相关信息？是否可根据一开始填写时的性别来判断页面应该显示月经史（女性）还是xx史（男性，注：xx表示暂不确定要用什么词语）？
 
