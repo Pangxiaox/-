@@ -10,6 +10,7 @@
         <li>{{ items.id }}</li>
         <li>{{ items.name }}</li>
         <li><a href="{% url 'edit' items.id %}">编辑</a></li>
+        <li><a href="{% url 'delete' items.id %}">删除</a></li>
         </ul>
         <br/>
     {% endfor %}

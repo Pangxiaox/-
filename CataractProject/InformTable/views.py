@@ -57,6 +57,14 @@ def showpatientlist(request):
     return render(request, "PatientsList.html", {"p_list": patientlist})
 
 
+def deletediagnose(request, id):
+    personal_info_obj = PersonalInformation.objects
+    essential_info_obj = EssentialInformation.objects
+    personal_info_obj.filter(id=id).delete()
+    essential_info_obj.filter(id=id).delete()
+    return redirect("/patientslist")
+
+
 def editdiagnose(request, id):
     personal_info = PersonalInformation.objects.get(id=id)
     essential_info = EssentialInformation.objects.get(id=id)
