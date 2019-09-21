@@ -927,3 +927,78 @@ C. 如果需要做出修改功能，即else部分代码，重新获取一次输�
 
 
 
+### 9.21 增加医生注册和登录界面1.0版本
+
+开会改到了今天晚上~~那就先小结一下这阶段我所做的东西叭🍉
+
+利用Django自带的登陆认证功能，完成了医生端登录和注册的部分功能，字段及表单验证尚未解决，目前来看还是通过js去操作表单验证方面的功能会更方便（在django里尝试了很多遍感觉有点难度）
+
+关键代码如下：
+
+InformTable/models.py
+
+```python
+from django.contrib.auth.models import AbstractUser
+
+class DoctorLogin(AbstractUser):
+    docname = models.CharField(max_length=10)
+    hosid = models.CharField(max_length=20)
+    hosname = models.CharField(max_length=20)
+```
+
+扩展自带的User，在username、password的自带属性基础上加上了docname（医生姓名）、hosid（医院编号）、hosname（医院名字）这几个属性。
+
+InformTable/views.py
+
+```python
+def doctorsignup(request):
+    state = ""
+    if request.method == 'POST':
+        username = request.POST.get('docid', '') # 相当于django自带user验证的username
+        hosid = request.POST.get('hosid', '')
+        hosname = request.POST.get('hosname', '')
+        password = request.POST.get('docpwd', '') #相当于django自带user验证的password
+        docname = request.POST.get('docname', '')
+        repeat_password = request.POST.get('repeat_docpwd', '')
+
+        if DoctorLogin.objects.filter(username=username):
+            state = '用户已存在'
+        else:
+            new_user = DoctorLogin.objects.create_user(username=username, password=password, hosid=hosid, hosname=hosname, docname=docname)
+            new_user.save()
+
+            return redirect('/doctorlogin/')
+
+    return render(request, 'DoctorSignUp.html', {'state': state, 'user': None})
+
+
+def doctorlogin(request):
+    message = ""
+    if request.method == "POST":
+        username = request.POST.get('docid')
+        password = request.POST.get('docpwd')
+        user = authenticate(username=username, password=password) # 其他字段对这个没影响
+        if user is not None:
+            login(request, user)
+            return redirect('/patientslist/')
+        else:
+            message = "用户名或密码错误,请重新输入"
+    return render(request, "DoctorLogin.html", {"message": message})
+
+
+@login_required
+def doctorlogout(request):
+    logout(request)
+    return redirect('/doctorlogin/')
+```
+
+注册、登录、注销三大主要功能的实现
+
+settings.py
+
+```python
+LOGIN_URL = '/doctorlogin/' # 加了@login_required 未登录状态下自动跳转到登录页面
+```
+
+@login_required:需要在登录状态下操作的方法，添加上面这个LOGIN_URL之后，在未登录时试图访问对应方法的html页面时会自动重定向到登陆页面
+

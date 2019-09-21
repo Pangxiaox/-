@@ -1,4 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+
+class DoctorLogin(AbstractUser):
+    docname = models.CharField(max_length=10)
+    hosid = models.CharField(max_length=20)
+    hosname = models.CharField(max_length=20)
 
 
 class PersonalInformation(models.Model):

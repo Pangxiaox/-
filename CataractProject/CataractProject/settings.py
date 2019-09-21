@@ -52,6 +52,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'CataractProject.urls'
 
+LOGIN_URL = '/doctorlogin/' # 加了@login_required 未登录状态下自动跳转到登录页面
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -85,6 +87,7 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = 'InformTable.DoctorLogin'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

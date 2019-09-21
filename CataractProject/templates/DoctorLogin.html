@@ -30,19 +30,24 @@
 
 <body>
         <div class="container" id="container">
+
             <p>
                 <span>医生登录</span>
             </p>
+
+            <h1>
+                 {{ message }}
+            </h1>
 
             <form class="contact" method="post" id="form">
                 {% csrf_token %}
             <div class="row clearfix">
                 <div class="lbl">
-                    <label for="hospitalNo">
-                        医院编号：</label>
+                    <label for="docid">
+                        用户名/账号：</label>
                 </div>
                 <div class="ctrl">
-                    <input type="text" id="hospitalNo" name="hospitalNo" placeholder="请输入您所在的医院的编号">
+                    <input type="text" id="docid" name="docid" placeholder="请输入您的用户名/账号">
                 </div>
             </div>
 
@@ -50,23 +55,11 @@
 
             <div class="row clearfix">
                 <div class="lbl">
-                    <label for="email">
-                        账号：</label>
-                </div>
-                <div class="ctrl">
-                    <input type="text" id="email" name="email" placeholder="请输入您的个人账号">
-                </div>
-            </div>
-
-                <br/>
-
-            <div class="row clearfix">
-                <div class="lbl">
-                    <label for="pwd">
+                    <label for="docpwd">
                         登录密码：</label>
                 </div>
                 <div class="ctrl">
-                    <input type="text" id="pwd" name="pwd" placeholder="请输入密码">
+                    <input type="password" id="docpwd" name="docpwd" placeholder="请输入密码">
                 </div>
             </div>
 
@@ -74,7 +67,9 @@
 
             <div class="row clearfix" style="text-align: center">
                     <input type="submit" name="submit" id="submit" class="submit" value="登录">
+                    <a href="/doctorsignup/">注册</a>
             </div>
+
 
             </form>
         </div>

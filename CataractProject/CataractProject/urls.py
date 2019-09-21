@@ -23,5 +23,7 @@ urlpatterns = [
     url(r'^patientslist/', views.showpatientlist),
     url(r'^editdiagnose/(?P<id>[0-9]*)/edit$', views.editdiagnose, name="edit"),
     url(r'^doctorlogin/', views.doctorlogin),
-    url(r'^diagnose/(?P<id>[0-9]*)/delete$', views.deletediagnose, name="delete")
+    url(r'^diagnose/(?P<id>[0-9]*)/delete$', views.deletediagnose, name="delete"),
+    url(r'^doctorsignup/', views.doctorsignup),
+    url(r'^doctorlogout/', views.doctorlogout)
 ]

@@ -1,7 +1,11 @@
 from django.shortcuts import render, redirect
-from InformTable.models import PersonalInformation, EssentialInformation
+from InformTable.models import PersonalInformation, EssentialInformation, DoctorLogin
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def postdiagnose(request):
     info = PersonalInformation()
     info2 = EssentialInformation()
@@ -52,11 +56,13 @@ def postdiagnose(request):
     return render(request, "DetailInform.html")
 
 
+@login_required
 def showpatientlist(request):
     patientlist = PersonalInformation.objects.all()
     return render(request, "PatientsList.html", {"p_list": patientlist})
 
 
+@login_required
 def deletediagnose(request, id):
     personal_info_obj = PersonalInformation.objects
     essential_info_obj = EssentialInformation.objects
@@ -65,6 +71,7 @@ def deletediagnose(request, id):
     return redirect("/patientslist")
 
 
+@login_required
 def editdiagnose(request, id):
     personal_info = PersonalInformation.objects.get(id=id)
     essential_info = EssentialInformation.objects.get(id=id)
@@ -157,5 +164,42 @@ def editdiagnose(request, id):
         return redirect('/patientslist')
 
 
+def doctorsignup(request):
+    state = ""
+    if request.method == 'POST':
+        username = request.POST.get('docid', '') # 相当于django自带user验证的username
+        hosid = request.POST.get('hosid', '')
+        hosname = request.POST.get('hosname', '')
+        password = request.POST.get('docpwd', '') #相当于django自带user验证的password
+        docname = request.POST.get('docname', '')
+        repeat_password = request.POST.get('repeat_docpwd', '')
+
+        if DoctorLogin.objects.filter(username=username):
+            state = '用户已存在'
+        else:
+            new_user = DoctorLogin.objects.create_user(username=username, password=password, hosid=hosid, hosname=hosname, docname=docname)
+            new_user.save()
+
+            return redirect('/doctorlogin/')
+
+    return render(request, 'DoctorSignUp.html', {'state': state, 'user': None})
+
+
 def doctorlogin(request):
-    return render(request, "DoctorLogin.html")
+    message = ""
+    if request.method == "POST":
+        username = request.POST.get('docid')
+        password = request.POST.get('docpwd')
+        user = authenticate(username=username, password=password) # 其他字段对这个没影响
+        if user is not None:
+            login(request, user)
+            return redirect('/patientslist/')
+        else:
+            message = "用户名或密码错误,请重新输入"
+    return render(request, "DoctorLogin.html", {"message": message})
+
+
+@login_required
+def doctorlogout(request):
+    logout(request)
+    return redirect('/doctorlogin/')
