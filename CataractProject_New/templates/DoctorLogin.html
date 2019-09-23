@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>医生登录</title>
+    <link href="/static/css/demo2.css" rel="stylesheet" type="text/css">
+    <!--Framework-->
+    <script src="/static/js/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="/static/js/jquery-ui.js" type="text/javascript"></script>
+</head>
+
+<style>
+    label{
+        font-size: 20px;
+    }
+    p{
+        font-size: 36px;
+        text-align: center;
+        color:gray;
+    }
+    #submit{
+        font-size: 22px;
+    }
+    #container{
+        border-radius: 10px;
+        border:3px solid forestgreen;
+    }
+</style>
+
+<body>
+        <div class="container" id="container">
+
+            <p>
+                <span>医生登录</span>
+            </p>
+
+            <h1>
+                 {{ message }}
+            </h1>
+
+            <form class="contact" method="post" id="form">
+                {% csrf_token %}
+            <div class="row clearfix">
+                <div class="lbl">
+                    <label for="docid">
+                        用户名/账号：</label>
+                </div>
+                <div class="ctrl">
+                    <input type="text" id="docid" name="docid" placeholder="请输入您的用户名/账号">
+                </div>
+            </div>
+
+                <br/>
+
+            <div class="row clearfix">
+                <div class="lbl">
+                    <label for="docpwd">
+                        登录密码：</label>
+                </div>
+                <div class="ctrl">
+                    <input type="password" id="docpwd" name="docpwd" placeholder="请输入密码">
+                </div>
+            </div>
+
+                <br/>
+
+            <div class="row clearfix" style="text-align: center">
+                    <input type="submit" name="submit" id="submit" class="submit" value="登录">
+                    <a href="/doctorsignup/">注册</a>
+            </div>
+
+
+            </form>
+        </div>
+</body>
+</html>

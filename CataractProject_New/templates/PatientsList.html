@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+        <!-- CSS Files -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/static/css/paper-bootstrap-wizard.css" rel="stylesheet" />
+</head>
+<body>
+    {% for items in p_list %}
+        <ul>
+        <li>{{ items.id }}</li>
+        <li>{{ items.name }}</li>
+        <li><a href="{% url 'edit' items.id %}">编辑</a></li>
+        <li><a href="{% url 'delete' items.id %}">删除</a></li>
+        </ul>
+        <br/>
+    {% endfor %}
+
+<p>{{ user.username }}</p>
+<a class="btn danger small" href="/doctorlogout/">注销登录</a>
+</body>
+</html>
