@@ -25,5 +25,8 @@ urlpatterns = [
     url(r'^doctorlogin/', views.doctorlogin),
     url(r'^diagnose/(?P<id>[0-9]*)/delete$', views.deletediagnose, name="delete"),
     url(r'^doctorsignup/', views.doctorsignup),
-    url(r'^doctorlogout/', views.doctorlogout)
+    url(r'^doctorlogout/', views.doctorlogout),
+    url(r'^showPatients/', views.showPatients),
+    url(r'^showVillages/', views.showVillages),
+    url(r'^doctorsetpwd/', views.set_password)
 ]

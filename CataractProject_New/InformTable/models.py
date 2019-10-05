@@ -126,3 +126,21 @@ class DiagnosticReports(models.Model):
     Doctor = models.CharField(max_length=20)
     Director = models.CharField(max_length=20)
     reportTime = models.DateTimeField(null=True, blank=True)
+
+
+# 下面几个信息与上面部分信息有重复，是否采用上面的字段待确定
+class Patient(models.Model):
+    id = models.CharField(max_length=15, primary_key=True) # 病人ID
+    pname = models.CharField(max_length=60) # 病人姓名
+    pvillage = models.CharField(max_length=60) # 病人所在村
+    presult = models.CharField(max_length=10) # 病人诊断结果
+
+
+class Village(models.Model):
+    v_id = models.CharField(max_length=20, primary_key=True) # 村ID
+    vname = models.CharField(max_length=60)
+    vdetailaddress = models.CharField(max_length=60)
+    vleadingname = models.CharField(max_length=60)
+    vleadingtel = models.CharField(max_length=30)
+    vorderedtime = models.DateField()
+    vmessage = models.TextField()

@@ -8,13 +8,26 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectId" id="1RApIynpN255aIcb45q3cN8Nacr" />
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../CataractProject2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../CataractPage" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\CataractProject_New\static\js" />
+      <recent name="D:\CataractProject_New\static\css" />
+      <recent name="D:\CataractProject_New\templates" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\CataractProject_New\templates" />
       <recent name="D:\CataractProject_New" />
@@ -76,6 +89,13 @@
       <workItem from="1569170829006" duration="213000" />
       <workItem from="1569201028540" duration="9300000" />
       <workItem from="1569238393194" duration="5615000" />
+      <workItem from="1569393903996" duration="270000" />
+      <workItem from="1569394482436" duration="64000" />
+      <workItem from="1569495297744" duration="150000" />
+      <workItem from="1569604092187" duration="61000" />
+      <workItem from="1570204224237" duration="1743000" />
+      <workItem from="1570238158191" duration="10255000" />
+      <workItem from="1570265727327" duration="4778000" />
     </task>
     <servers />
   </component>

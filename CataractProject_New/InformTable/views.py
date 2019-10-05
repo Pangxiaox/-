@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from InformTable.models import PersonalInformation, EssentialInformation, DoctorLogin, EyeExamine, DiagnosticReports
 from django.contrib.auth.models import User
+from InformTable.models import Patient, Village
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
@@ -115,6 +116,7 @@ def postdiagnose(request):
     return render(request, "DetailInform.html")
 
 
+# old method
 @login_required
 def showpatientlist(request):
     patientlist = PersonalInformation.objects.all()
@@ -332,13 +334,14 @@ def editdiagnose(request, id):
         return redirect('/patientslist')
 
 
+# 到时不为医生提供这一功能，由我们分配账号密码，医生可自行修改密码
 def doctorsignup(request):
     state = ""
     if request.method == 'POST':
         username = request.POST.get('docid', '') # 相当于django自带user验证的username
         hosid = request.POST.get('hosid', '')
         hosname = request.POST.get('hosname', '')
-        password = request.POST.get('docpwd', '') #相当于django自带user验证的password
+        password = request.POST.get('docpwd', '') # 相当于django自带user验证的password
         docname = request.POST.get('docname', '')
         repeat_password = request.POST.get('repeat_docpwd', '')
 
@@ -361,7 +364,7 @@ def doctorlogin(request):
         user = authenticate(username=username, password=password) # 其他字段对这个没影响
         if user is not None:
             login(request, user)
-            return redirect('/patientslist/')
+            return redirect('/showPatients/')
         else:
             message = "用户名或密码错误,请重新输入"
     return render(request, "DoctorLogin.html", {"message": message})
@@ -371,3 +374,51 @@ def doctorlogin(request):
 def doctorlogout(request):
     logout(request)
     return redirect('/doctorlogin/')
+
+
+@login_required
+def showPatients(request):
+    print(request.user.username)
+    if request.method == 'GET':
+        print("ok")
+        all_patients = Patient.objects.all().order_by('id')
+
+    return render(request, 'ManagePatientsInform.html', {'all_patients': all_patients, "user": request.user.username})
+
+
+@login_required
+def showVillages(request):
+    print(request.user.username)
+    if request.method == 'GET':
+        print("ok")
+        all_villages = Village.objects.all().order_by('v_id')
+
+    return render(request, 'ManageVillageInform.html', {'all_villages': all_villages, "user": request.user.username})
+
+
+@login_required
+def set_password(request):
+    user = request.user
+    state = ''
+    if request.method == 'POST':
+        username = request.POST.get('docid', '')
+        old_password = request.POST.get('docpwd', '')
+        new_password = request.POST.get('new_docpwd', '')
+        repeat_password = request.POST.get('repeat_docpwd', '')
+        if user.check_password(old_password):
+            if not new_password:
+                state = '请输入新密码'
+            elif new_password != repeat_password:
+                state = '两次输入的密码不一致'
+            else:
+                newuser = DoctorLogin.objects.get(username=username)
+                newuser.set_password(new_password)
+                newuser.save()
+                return redirect("/doctorlogin/")
+        else:
+            state = '旧密码错误'
+    content = {
+        'user': user,
+        'state': state,
+    }
+    return render(request, 'DoctorSetPwd.html', content)
