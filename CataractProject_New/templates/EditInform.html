@@ -466,7 +466,7 @@
                                     <div class="form-group">
                                         <label>生命体征: T</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="temperature">
+                                            <input type="text" class="form-control" name="temperature" value="{{ physical_info.temperature }}">
                                             <span class="input-group-addon">℃</span>
                                         </div>
                                     </div>
@@ -476,7 +476,7 @@
                                     <div class="form-group">
                                         <label>生命体征: P</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="lifeindex_P">
+                                            <input type="text" class="form-control" name="pulse" value="{{ physical_info.pulse }}">
                                             <span class="input-group-addon">次/分</span>
                                         </div>
                                     </div>
@@ -486,7 +486,7 @@
                                     <div class="form-group">
                                         <label>生命体征: R</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="lifeindex_R">
+                                            <input type="text" class="form-control" name="respiratory_rate" value="{{ physical_info.respiratory_rate }}">
                                             <span class="input-group-addon">次/分</span>
                                         </div>
                                     </div>
@@ -496,7 +496,7 @@
                                     <div class="form-group">
                                         <label>生命体征: Bp</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="lifeindex_Bp">
+                                            <input type="text" class="form-control" name="blood_pressure" value="{{ physical_info.blood_pressure }}">
                                             <span class="input-group-addon">mmHg</span>
                                         </div>
                                     </div>
@@ -505,16 +505,16 @@
                                 <div class="col-sm-10 col-sm-offset-1">
                                     <div class="form-group">
                                         <label>一般项目</label>
-                                        <textarea class="form-control" placeholder="" rows="2"></textarea>
+                                        <textarea class="form-control" placeholder="" rows="2">{{ physical_info.routine_info }}</textarea>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4 col-sm-offset-1">
                                     <div class="form-group">
                                         <label>皮肤粘膜：皮肤有无黄染</label>
-                                        <select class="form-control">
-                                            <option value="有">有</option>
-                                            <option value="无" selected>无</option>
+                                        <select class="form-control" name="yellow_dye">
+                                            <option value="有" {% if physical_info.yellow_dye == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if physical_info.yellow_dye == "无" %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -522,9 +522,9 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>浅表淋巴结：淋巴结有无肿大</label>
-                                        <select class="form-control">
-                                            <option value="有">有</option>
-                                            <option value="无" selected>无</option>
+                                        <select class="form-control" name="lymphgland">
+                                            <option value="有" {% if physical_info.lymphgland == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if physical_info.lymphgland == "无" %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -532,14 +532,14 @@
                                 <div class="col-sm-10 col-sm-offset-1">
                                     <div class="form-group">
                                         <label>颈部</label>
-                                        <input type="text" class="form-control" id="neck">
+                                        <input type="text" class="form-control" name="neck_info" value="{{ physical_info.neck_info }}">
                                     </div>
                                 </div>
 
                                 <div class="col-sm-10 col-sm-offset-1">
                                     <div class="form-group">
                                         <label>五官</label>
-                                        <input type="text" class="form-control" id="face">
+                                        <input type="text" class="form-control" name="face_info" value="{{ physical_info.face_info }}">
                                     </div>
                                 </div>
 
@@ -551,9 +551,9 @@
                                 <div class="col-sm-3 col-sm-offset-1">
                                     <div class="form-group">
                                         <label>视诊：胸部外形有无畸形</label>
-                                        <select class="form-control">
-                                            <option value="有">有</option>
-                                            <option value="无" selected>无</option>
+                                        <select class="form-control" name="chest_contour">
+                                            <option value="有" {% if chest_info.chest_contour == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if chest_info.chest_contour == "无" %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -561,9 +561,9 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label>听诊：双侧肺呼吸音是否正常</label>
-                                        <select class="form-control">
-                                            <option value="有" selected>是</option>
-                                            <option value="无">否</option>
+                                        <select class="form-control" name="respiratory_sounds">
+                                            <option value="有" {% if chest_info.respiratory_sounds == "有" %} selected="selected" {% endif %}>是</option>
+                                            <option value="无" {% if chest_info.respiratory_sounds == "无" %} selected="selected" {% endif %}>否</option>
                                         </select>
                                     </div>
                                 </div>
@@ -571,9 +571,9 @@
                                 <div class="col-sm-2">
                                     <div class="form-group">
                                         <label>听诊：有无闻及干啰音</label>
-                                        <select class="form-control">
-                                            <option value="有">有</option>
-                                            <option value="无" selected>无</option>
+                                        <select class="form-control" name="dryrale">
+                                            <option value="有" {% if chest_info.dryrale == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if chest_info.dryrale == "无" %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -581,9 +581,9 @@
                                 <div class="col-sm-2">
                                     <div class="form-group">
                                         <label>听诊：有无闻及湿啰音</label>
-                                        <select class="form-control">
-                                            <option value="有">有</option>
-                                            <option value="无" selected>无</option>
+                                        <select class="form-control" name="wetrale">
+                                            <option value="有" {% if chest_info.wetrale == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if chest_info.wetrale == "无" %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -592,7 +592,7 @@
                                     <div class="form-group">
                                         <label>听诊：心率</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="heartrate">
+                                            <input type="text" class="form-control" name="heart_rate" value="{{ chest_info.heart_rate }}">
                                             <span class="input-group-addon">次/分</span>
                                         </div>
                                     </div>
@@ -601,9 +601,9 @@
                                 <div class="col-sm-5">
                                     <div class="form-group">
                                         <label>听诊：心律是否齐</label>
-                                        <select class="form-control">
-                                            <option value="有" selected>是</option>
-                                            <option value="无" >否</option>
+                                        <select class="form-control" name="arrhythmia">
+                                            <option value="有" {% if chest_info.arrhythmia == "有" %} selected="selected" {% endif %}>是</option>
+                                            <option value="无" {% if chest_info.arrhythmia == "无" %} selected="selected" {% endif %}>否</option>
                                         </select>
                                     </div>
                                 </div>
@@ -615,9 +615,9 @@
                                 <div class="col-sm-3 col-sm-offset-1">
                                     <div class="form-group">
                                         <label>触诊：全腹是否软</label>
-                                        <select class="form-control">
-                                            <option value="有" selected>是</option>
-                                            <option value="无" >否</option>
+                                        <select class="form-control" name="abdomen_soft">
+                                            <option value="有" {% if stomach_info.abdomen_soft == "有" %} selected="selected" {% endif %}>是</option>
+                                            <option value="无" {% if stomach_info.abdomen_soft == "无" %} selected="selected" {% endif %}>否</option>
                                         </select>
                                     </div>
                                 </div>
@@ -625,9 +625,9 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label>触诊：全腹有无压痛</label>
-                                        <select class="form-control">
-                                            <option value="有" >有</option>
-                                            <option value="无" selected>无</option>
+                                        <select class="form-control" name="abdomen_tenderness">
+                                            <option value="有" {% if stomach_info.abdomen_tenderness == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if stomach_info.abdomen_tenderness == "无" %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -635,9 +635,9 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label>触诊：全腹有无反跳痛</label>
-                                        <select class="form-control">
-                                            <option value="有" >有</option>
-                                            <option value="无" selected>无</option>
+                                        <select class="form-control" name="abdomen_rebound_pain">
+                                            <option value="有" {% if stomach_info.abdomen_rebound_pain == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if stomach_info.abdomen_rebound_pain == "无" %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -645,9 +645,9 @@
                                 <div class="col-sm-4 col-sm-offset-1">
                                     <div class="form-group">
                                         <label>触诊：肝脏肋下有无触及</label>
-                                        <select class="form-control">
-                                            <option value="有" >有</option>
-                                            <option value="无" selected>无</option>
+                                        <select class="form-control" name="subcostal_liver">
+                                            <option value="有" {% if stomach_info.subcostal_liver == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if stomach_info.subcostal_liver == "无" %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -655,9 +655,9 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>触诊：脾脏肋下有无触及</label>
-                                        <select class="form-control">
-                                            <option value="有" >有</option>
-                                            <option value="无" selected>无</option>
+                                        <select class="form-control" name="subcostal_spleen">
+                                            <option value="有" {% if stomach_info.subcostal_spleen == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if stomach_info.subcostal_spleen == "无" %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -665,9 +665,9 @@
                                 <div class="col-sm-4 col-sm-offset-1">
                                     <div class="form-group">
                                         <label>四肢脊柱：四肢关节有无畸形</label>
-                                        <select class="form-control">
-                                            <option value="有" >有</option>
-                                            <option value="无" selected>无</option>
+                                        <select class="form-control" name="limb_joint">
+                                            <option value="有" {% if stomach_info.limb_joint == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if stomach_info.limb_joint == '无' %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -675,9 +675,9 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>四肢脊柱：活动是否正常</label>
-                                        <select class="form-control">
-                                            <option value="有" selected>是</option>
-                                            <option value="无" >否</option>
+                                        <select class="form-control" name="limb_movement">
+                                            <option value="有" {% if stomach_info.limb_movement == "有" %} selected="selected" {% endif %}>是</option>
+                                            <option value="无" {% if stomach_info.limb_movement == "无" %} selected="selected" {% endif %}>否</option>
                                         </select>
                                     </div>
                                 </div>
@@ -685,9 +685,9 @@
                                 <div class="col-sm-4 col-sm-offset-1">
                                     <div class="form-group">
                                         <label>神经系统：生理反射有无存在</label>
-                                        <select class="form-control">
-                                            <option value="有" selected>有</option>
-                                            <option value="无" >无</option>
+                                        <select class="form-control" name="physiological_reflex">
+                                            <option value="有" {% if stomach_info.physiological_reflex == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if stomach_info.physiological_reflex == "无" %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -695,9 +695,9 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>神经系统：病理反射有无引出</label>
-                                        <select class="form-control">
-                                            <option value="有" >有</option>
-                                            <option value="无" selected>无</option>
+                                        <select class="form-control" name="pathological_reflex">
+                                            <option value="有" {% if stomach_info.pathological_reflex == "有" %} selected="selected" {% endif %}>有</option>
+                                            <option value="无" {% if stomach_info.pathological_reflex == "无" %} selected="selected" {% endif %}>无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -705,7 +705,7 @@
                                 <div class="col-sm-10 col-sm-offset-1">
                                     <div class="form-group">
                                         <label>其他</label>
-                                        <input type="text" class="form-control" id="other">
+                                        <input type="text" class="form-control" name="other_info">
                                     </div>
                                 </div>
                             </div>

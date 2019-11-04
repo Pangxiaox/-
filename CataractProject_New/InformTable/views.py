@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from InformTable.models import PersonalInformation, EssentialInformation, DoctorLogin, EyeExamine, DiagnosticReports
+from InformTable.models import PersonalInformation, EssentialInformation, PhysicalExamine, ChestExamine, StomachExamine, DoctorLogin, EyeExamine, DiagnosticReports
 from django.contrib.auth.models import User
 from InformTable.models import Patient, Village
 from django.contrib.auth import authenticate, login, logout
@@ -10,6 +10,9 @@ from django.contrib.auth.decorators import login_required
 def postdiagnose(request):
     info = PersonalInformation()
     info2 = EssentialInformation()
+    info3 = PhysicalExamine()
+    info4 = ChestExamine()
+    info5 = StomachExamine()
     info6 = EyeExamine()
     info8 = DiagnosticReports()
 
@@ -57,6 +60,40 @@ def postdiagnose(request):
         info2.hypertension_family_history = request.POST.get("hypertension_family_history")
         info2.family_history_remark = request.POST.get("family_history_remark")
         info2.save()
+
+        info3.id = request.POST.get("id")
+        info3.temperature = request.POST.get("temperature")
+        info3.pulse = request.POST.get("pulse")
+        info3.respiratory_rate = request.POST.get("respiratory_rate")
+        info3.blood_pressure = request.POST.get("blood_pressure")
+        info3.routine_info = request.POST.get("routine_info")
+        info3.yellow_dye = request.POST.get("yellow_dye")
+        info3.lymphgland = request.POST.get("lymphgland")
+        info3.neck_info = request.POST.get("neck_info")
+        info3.face_info = request.POST.get("face_info")
+        info3.save()
+
+        info4.id = request.POST.get("id")
+        info4.chest_contour = request.POST.get("chest_contour")
+        info4.respiratory_sounds = request.POST.get("respiratory_sounds")
+        info4.dryrale = request.POST.get("dryrale")
+        info4.wetrale = request.POST.get("wetrale")
+        info4.heart_rate = request.POST.get("heart_rate")
+        info4.arrhythmia = request.POST.get("arrhythmia")
+        info4.save()
+
+        info5.id = request.POST.get("id")
+        info5.abdomen_soft = request.POST.get("abdomen_soft")
+        info5.abdomen_tenderness = request.POST.get("abdomen_tenderness")
+        info5.abdomen_rebound_pain = request.POST.get("abdomen_rebound_pain")
+        info5.subcostal_liver = request.POST.get("subcostal_liver")
+        info5.subcostal_spleen = request.POST.get("subcostal_spleen")
+        info5.limb_joint = request.POST.get("limb_joint")
+        info5.limb_movement = request.POST.get("limb_movement")
+        info5.physiological_reflex = request.POST.get("physiological_reflex")
+        info5.pathological_reflex = request.POST.get("pathological_reflex")
+        info5.other_info = request.POST.get("other_info")
+        info5.save()
 
         info6.id = request.POST.get("id")
         info6.right_vision = request.POST.get("right_vision")
@@ -141,10 +178,15 @@ def deletediagnose(request, id):
 def editdiagnose(request, id):
     personal_info = PersonalInformation.objects.get(id=id)
     essential_info = EssentialInformation.objects.get(id=id)
+    physical_info = PhysicalExamine.objects.get(id=id)
+    chest_info = ChestExamine.objects.get(id=id)
+    stomach_info = StomachExamine.objects.get(id=id)
     eyeexamine_info = EyeExamine.objects.get(id=id)
     diagnosticreport_info = DiagnosticReports.objects.get(id=id)
     if request.method == "GET":
-        return render(request, "EditInform.html", {"personal_info": personal_info, "essential_info": essential_info, "eyeexamine_info": eyeexamine_info, "diagnosticreport_info": diagnosticreport_info})
+        return render(request, "EditInform.html", {"personal_info": personal_info, "essential_info": essential_info,
+                                                   "physical_info": physical_info, "chest_info": chest_info, "stomach_info": stomach_info,
+                                                   "eyeexamine_info": eyeexamine_info, "diagnosticreport_info": diagnosticreport_info})
     else:
 
         # part 1
@@ -224,6 +266,71 @@ def editdiagnose(request, id):
         e_info.update(tumors_family_history=tumors_family_history)
         e_info.update(hypertension_family_history=hypertension_family_history)
         e_info.update(family_history_remark=family_history_remark)
+
+        # part 3
+        temperature = request.POST.get("temperature")
+        pulse = request.POST.get("pulse")
+        respiratory_rate = request.POST.get("respiratory_rate")
+        blood_pressure = request.POST.get("blood_pressure")
+        routine_info = request.POST.get("routine_info")
+        yellow_dye = request.POST.get("yellow_dye")
+        lymphgland = request.POST.get("lymphgland")
+        neck_info = request.POST.get("neck_info")
+        face_info = request.POST.get("face_info")
+
+        phy_info = PhysicalExamine.objects.filter(id=id)
+
+        phy_info.update(temperature=temperature)
+        phy_info.update(pulse=pulse)
+        phy_info.update(respiratory_rate=respiratory_rate)
+        phy_info.update(blood_pressure=blood_pressure)
+        phy_info.update(routine_info=routine_info)
+        phy_info.update(yellow_dye=yellow_dye)
+        phy_info.update(lymphgland=lymphgland)
+        phy_info.update(neck_info=neck_info)
+        phy_info.update(face_info=face_info)
+
+        # part 4
+        chest_contour = request.POST.get("chest_contour")
+        respiratory_sounds = request.POST.get("respiratory_sounds")
+        dryrale = request.POST.get("dryrale")
+        wetrale = request.POST.get("wetrale")
+        heart_rate = request.POST.get("heart_rate")
+        arrhythmia = request.POST.get("arrhythmia")
+
+        che_info = ChestExamine.objects.filter(id=id)
+
+        che_info.update(chest_contour=chest_contour)
+        che_info.update(respiratory_sounds=respiratory_sounds)
+        che_info.update(dryrale=dryrale)
+        che_info.update(wetrale=wetrale)
+        che_info.update(heart_rate=heart_rate)
+        che_info.update(arrhythmia=arrhythmia)
+
+        # part 5
+        abdomen_soft = request.POST.get("abdomen_soft")
+        abdomen_tenderness = request.POST.get("abdomen_tenderness")
+        abdomen_rebound_pain = request.POST.get("abdomen_rebound_pain")
+        subcostal_liver = request.POST.get("subcostal_liver")
+        subcostal_spleen = request.POST.get("subcostal_spleen")
+        limb_joint = request.POST.get("limb_joint")
+        limb_movement = request.POST.get("limb_movement")
+        physiological_reflex = request.POST.get("physiological_reflex")
+        pathological_reflex = request.POST.get("pathological_reflex")
+        other_info = request.POST.get("other_info")
+
+        sto_info = StomachExamine.objects.filter(id=id)
+
+        sto_info.update(abdomen_soft=abdomen_soft)
+        sto_info.update(abdomen_tenderness=abdomen_tenderness)
+        sto_info.update(abdomen_rebound_pain=abdomen_rebound_pain)
+        sto_info.update(subcostal_liver=subcostal_liver)
+        sto_info.update(subcostal_spleen=subcostal_spleen)
+        sto_info.update(limb_joint=limb_joint)
+        sto_info.update(limb_movement=limb_movement)
+        sto_info.update(physiological_reflex=physiological_reflex)
+        sto_info.update(pathological_reflex=pathological_reflex)
+        sto_info.update(other_info=other_info)
 
         # part 6
         right_vision = request.POST.get("right_vision")

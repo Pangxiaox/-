@@ -64,6 +64,55 @@ class EssentialInformation(models.Model):
     family_history_remark = models.TextField(null=True, blank=True)
 
 
+class PhysicalExamine(models.Model):
+    id = models.CharField(primary_key=True, max_length=15)
+    temperature = models.FloatField()
+    pulse = models.IntegerField()
+    respiratory_rate = models.IntegerField()  # R（呼吸频率)
+    blood_pressure = models.IntegerField()  # Bp（血压）
+    routine_info = models.TextField()  # 一般项目
+    Y_N_CHOICES = (
+        ('有', 'yes'),
+        ('无', 'no'),
+    )
+    yellow_dye = models.CharField(max_length=1, choices=Y_N_CHOICES)
+    lymphgland = models.CharField(max_length=1, choices=Y_N_CHOICES)  # 淋巴结肿大
+    neck_info = models.TextField()
+    face_info = models.TextField()  # 五官
+
+
+class ChestExamine(models.Model):
+    id = models.CharField(primary_key=True, max_length=15)
+    Y_N_CHOICES = (
+        ('有', 'yes'),
+        ('无', 'no'),
+    )
+    chest_contour = models.CharField(max_length=1, choices=Y_N_CHOICES)  # 外形畸形
+    respiratory_sounds = models.CharField(max_length=1, choices=Y_N_CHOICES)  # 肺呼吸音
+    dryrale = models.CharField(max_length=1, choices=Y_N_CHOICES)  # 干啰音
+    wetrale = models.CharField(max_length=1, choices=Y_N_CHOICES)  # 湿啰音
+    heart_rate = models.IntegerField()  # 心率
+    arrhythmia = models.CharField(max_length=1, choices=Y_N_CHOICES)  # 心律
+
+
+class StomachExamine(models.Model):
+    id = models.CharField(primary_key=True, max_length=15)
+    Y_N_CHOICES = (
+        ('有', 'yes'),
+        ('无', 'no'),
+    )
+    abdomen_soft = models.CharField(max_length=1, choices=Y_N_CHOICES)  # 软
+    abdomen_tenderness = models.CharField(max_length=1, choices=Y_N_CHOICES)  # 压痛
+    abdomen_rebound_pain = models.CharField(max_length=1, choices=Y_N_CHOICES)  # 反跳痛
+    subcostal_liver = models.CharField(max_length=1, choices=Y_N_CHOICES)  # 肝脏肋下触及
+    subcostal_spleen = models.CharField(max_length=1, choices=Y_N_CHOICES)  # 脾脏肋下触及
+    limb_joint = models.CharField(max_length=1, choices=Y_N_CHOICES)  # 四肢关节
+    limb_movement = models.CharField(max_length=1, choices=Y_N_CHOICES)  # 四肢活动
+    physiological_reflex = models.CharField(max_length=1, choices=Y_N_CHOICES)  # 生理反射
+    pathological_reflex = models.CharField(max_length=1, choices=Y_N_CHOICES)  # 病理反射
+    other_info = models.TextField(null=True, blank=True)
+
+
 class EyeExamine(models.Model):
     id = models.CharField(primary_key=True, max_length=15)
     Y_N_CHOICES = (
@@ -109,9 +158,9 @@ class EyeExamine(models.Model):
     right_fundusoculi_detailinform = models.TextField(null=True, blank=True)
     left_fundusoculi_detailinform = models.TextField(null=True, blank=True)
     right_lens = models.TextField(null=True, blank=True)
-    left_lens = models.TextField(null=True, blank=True) # 晶状体
+    left_lens = models.TextField(null=True, blank=True)  # 晶状体
     right_vitreum = models.TextField(null=True, blank=True)
-    left_vitreum = models.TextField(null=True, blank=True) # 玻璃体
+    left_vitreum = models.TextField(null=True, blank=True)  # 玻璃体
 
 
 class DiagnosticReports(models.Model):
@@ -130,14 +179,14 @@ class DiagnosticReports(models.Model):
 
 # 下面几个信息与上面部分信息有重复，是否采用上面的字段待确定
 class Patient(models.Model):
-    id = models.CharField(max_length=15, primary_key=True) # 病人ID
-    pname = models.CharField(max_length=60) # 病人姓名
-    pvillage = models.CharField(max_length=60) # 病人所在村
-    presult = models.CharField(max_length=10) # 病人诊断结果
+    id = models.CharField(max_length=15, primary_key=True)  # 病人ID
+    pname = models.CharField(max_length=60)  # 病人姓名
+    pvillage = models.CharField(max_length=60)  # 病人所在村
+    presult = models.CharField(max_length=10)  # 病人诊断结果
 
 
 class Village(models.Model):
-    v_id = models.CharField(max_length=20, primary_key=True) # 村ID
+    v_id = models.CharField(max_length=20, primary_key=True)  # 村ID
     vname = models.CharField(max_length=60)
     vdetailaddress = models.CharField(max_length=60)
     vleadingname = models.CharField(max_length=60)

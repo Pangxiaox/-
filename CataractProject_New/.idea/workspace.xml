@@ -8,6 +8,9 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -19,7 +22,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../CataractPage" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -96,6 +99,15 @@
       <workItem from="1570204224237" duration="1743000" />
       <workItem from="1570238158191" duration="10255000" />
       <workItem from="1570265727327" duration="4778000" />
+      <workItem from="1570543169637" duration="669000" />
+      <workItem from="1570582958063" duration="106000" />
+      <workItem from="1570583338450" duration="52000" />
+      <workItem from="1570583732845" duration="56000" />
+      <workItem from="1570584497578" duration="809000" />
+      <workItem from="1572182978274" duration="125000" />
+      <workItem from="1572855112007" duration="5354000" />
+      <workItem from="1572870208499" duration="3870000" />
+      <workItem from="1572883901147" duration="2135000" />
     </task>
     <servers />
   </component>
